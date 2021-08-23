@@ -6,8 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '../config';
 
 @Module({
-    imports: [ConfigModule, TypeOrmModule.forFeature([User])],
-    controllers: [SeedsController],
-    providers: [SeedsService, Logger],
+  imports: [ConfigModule, TypeOrmModule.forFeature([User])],
+  controllers: [SeedsController],
+  providers: [SeedsService, Logger],
 })
 export class SeedsModule {}
