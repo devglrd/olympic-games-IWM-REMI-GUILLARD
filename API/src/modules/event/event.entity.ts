@@ -11,7 +11,8 @@ import {
 } from 'typeorm';
 import { Sport } from '../sport';
 import { Score } from '../score';
-import {EventCategory} from "./eventCategory.entity";
+import { EventCategory } from './eventCategory.entity';
+import { Type } from 'class-transformer';
 
 @Entity({
   name: 'events',
@@ -26,7 +27,8 @@ export class Event extends BaseEntity {
   @Column({ length: 255 })
   location: string;
 
-  @Column()
+  @Type(() => Date)
+  @Column('text')
   startAt: Date;
 
   @Column({ length: 255 })
@@ -38,10 +40,8 @@ export class Event extends BaseEntity {
   @ManyToOne((type) => Sport, (sport) => sport.event)
   sport: Sport;
 
-  @OneToOne(type => EventCategory)
-  @JoinColumn({ name: 'fk_event_category_id' })
-  @Column()
-  event: string;
+  @ManyToOne((type) => EventCategory, (cat) => cat.events)
+  category: EventCategory;
 
   @OneToMany((type) => Score, (event) => event.event)
   scores: Score[];

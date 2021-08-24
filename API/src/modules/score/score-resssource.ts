@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {Score} from "./score.entity";
+import { Score } from './score.entity';
 
 @Injectable()
 export class ScoreResssource {

@@ -13,6 +13,7 @@ export class EventResssource {
       time: user.time,
       sport: user.sport,
       scores: user.scores,
+      category: user.category,
     };
   }
 
@@ -27,6 +28,7 @@ export class EventResssource {
         time: user.time,
         sport: user.sport,
         scores: user.scores,
+        category: user.category,
       };
     });
   }

@@ -1,8 +1,17 @@
-import {Controller, Delete, Get, Post, Put, Req, Res, UseGuards} from '@nestjs/common';
-import {ApiBearerAuth, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SportService } from './sport.service';
 import { SportResssource } from './sport-resssource';
-import {AuthGuard} from "@nestjs/passport";
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('sports')
 @Controller('sports')
