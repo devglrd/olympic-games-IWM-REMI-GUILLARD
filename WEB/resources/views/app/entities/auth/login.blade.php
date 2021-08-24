@@ -7,9 +7,6 @@
 
             <div class="form-signin ">
                 <form>
-                    <img class=" img-fluid mb-4"
-                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Olympic_rings_without_rims.svg/1280px-Olympic_rings_without_rims.svg.png"
-                         alt="">
                     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
                     <div class="form-floating">

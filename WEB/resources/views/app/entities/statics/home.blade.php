@@ -30,21 +30,24 @@
                                 @foreach($sport->event as $event)
                                     <div class="accordion-body">
                                         <a href="#"
-                                           class="w-auto list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                           class="w-auto flex-column list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                                             <div class="flex-column">
                                                 {{ $event->name }}
-                                                <p><small>{{ $event->location }}</small></p>
+                                                <p class="mb-0"><small>Location : {{ $event->location }}</small></p>
+                                                <p class="mt-0"><small>date : {{ \Carbon\Carbon::parse($event->startAt)->toDateString() }} {{ $event->time }}</small></p>
                                                 <span
                                                     class="badge badge-info badge-pill text-dark"> {{ $sport->content }}</span>
                                             </div>
-                                            @foreach($event->scores as $score)
-                                                <div class="medail ">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                @foreach($event->scores as $score)
+                                                    <div class="medail mx-3 border-{{$score->type}}">
                                                     <span>Médailles : {{$score->type}}</span>
                                                     <span>
                                                         Score : {{ $score->score }} {{ $score->unit }}
                                                     </span>
                                                 </div>
-                                            @endforeach
+                                                @endforeach
+                                            </div>
                                         </a>
                                     </div>
                                 @endforeach
