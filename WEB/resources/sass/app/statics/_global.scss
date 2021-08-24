@@ -1,0 +1,334 @@
+@font-face {
+    font-family: FuturaBook;
+    src: url('/fonts/Futura Book.ttf');
+}
+
+
+html, body{
+    font-family: 'FuturaBook' !important;
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.wrapper {
+    /* The height needs to be set to a fixed value for the effect to work.
+     * 100vh is the full height of the viewport. */
+    height: 100vh;
+    /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
+    overflow-x: hidden;
+    /* Enable scrolling on the page. */
+    overflow-y: auto;
+    /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
+    perspective: 2px;
+}
+
+.section {
+    /* Needed for children to be absolutely positioned relative to the parent. */
+    position: relative;
+    /* For text formatting. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    //text-shadow: 0 0 5px #000;
+    padding: 30px 0;
+}
+
+
+.main-section {
+    /* The height of the container. Must be set, but it doesn't really matter what the value is. */
+    height: 100vh;
+    overflow: hidden;
+    padding: 0 0;
+}
+
+.parallax{
+    overflow: hidden;
+}
+
+.parallax::after {
+    /* Display and position the pseudo-element */
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+
+    /* Move the pseudo-element back away from the camera,
+    * then scale it back up to fill the viewport.
+    * Because the pseudo-element is further away, it appears to move more slowly, like in real life. */
+    transform: translateZ(-4px) scale(2.0);
+    /* Force the background image to fill the whole element. */
+    background-size: 100%;
+    /* Keep the image from overlapping sibling elements. */ 
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+
+.static {
+    background: transparent;
+}
+
+.pdr-content{
+    padding-right: 25px;
+}
+.pdl-content{
+    padding-left: 25px;
+}
+
+.content {
+    max-width: 640px;
+    display: table;
+    height: 100%;
+}
+
+.left-float-content{
+    float: right;
+
+}
+
+.right-float-content{
+    float: left;
+}
+
+.content-cell
+{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.bgGreen-colorWhite {
+    //background: $primary-color;
+    //color: $secondary-color;
+    background:transparent;
+    color: $primary-color;
+}
+
+.bgGreen-colorWhite-alpha {
+    color: $secondary-color;
+    background-color: $primary-color-a;
+}
+
+.rule-table{
+    display: table;
+    padding-left: 30px;
+    padding-bottom: 4px;
+}
+
+.rule-1{
+    padding-left: 45px!important;
+}
+.rule-2{
+    padding-left: 60px!important;
+}
+.rule-3{
+    padding-left: 75px!important;
+}
+.rule-4{
+    padding-left: 90px!important;
+}
+
+.rule-table-row{
+    display: table-row;
+}
+
+.rule-table-cell, .rule-table-cell-ent {
+    display: table-cell;
+    font-size: 1.4rem;
+    color: grey;
+    padding:0px 10px 0px 10px;
+    font-weight: 600;
+}
+
+.rule:not(:last-child) { 
+    margin-bottom: 30px;
+}
+
+.bglogo {
+    background-image: url('/images/BG_logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.border-green{
+    border:solid 1px $primary-color !important;
+}
+
+.cadre::before {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    top: 0;
+    height: 100%;
+    width: 110%;
+    //background: $primary-color;
+    transform: skewX(10deg);
+    border: solid 2px $primary-color;
+}
+
+
+.cadre-left::before{
+    left:-10%; 
+}
+
+.cadre-right::before{
+    left:3%; 
+}
+
+.title-cadre{
+    font-size: 2em;
+    color: $primary-color;
+    text-transform: uppercase;
+}
+
+.title-section {
+    font-size: 2em;
+    color: $primary-color;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.solutions-text {
+    color: $primary-color;
+    font-size: 1.4rem;
+}
+
+.step-text {
+    color: $third-color;
+    font-size: 1.4rem;
+}
+
+.titre-main-section {
+    background-color: rgba(75, 212, 153,0.8);
+    color: $secondary-color;
+    text-shadow: 2px 2px 4px #000000;
+    }
+
+.bouton-contact {
+    color: #fff;
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.check{
+    filter: opacity(50%);
+}
+
+
+@include media-breakpoint-down(lg) {
+    .titre-main-section{
+        font-size: 1.8rem;
+        color: #fff;
+    }
+    
+}
+
+@include media-breakpoint-up(lg) {
+    .titre-main-section{
+        font-size: 2.6rem;
+        color: #fff;
+    }
+}
+    
+
+/*media-queries globales*/
+
+@include media-breakpoint-between(md, lg) {
+    .rule-table-cell {
+        font-size: 1.2rem;
+    }
+    
+    .rule-table-cell-ent {
+        font-size: 1.0rem !important;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+    .pdr-content{
+        padding-right:0px;
+    }
+
+    .pourquoi-texte{
+        font-size: 35px !important;
+    }
+    
+    .column2{
+        margin-top: 1rem;
+    }   
+}
+
+
+@include media-breakpoint-down(sm) {
+    .column2{
+        margin-top: 1rem;
+    } 
+    .rule-table{
+        padding-left: 0px !important;
+    }
+    .rule-1{
+        padding-left: 0px !important;
+    }
+    .rule-2{
+        padding-left: 0px !important;
+    }
+    .rule-3{
+        padding-left: 0px !important;
+    }
+    .rule-4{
+        padding-left: 0px !important;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .wrapper {
+        
+        /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
+        perspective: 8px;
+    }
+}
+
+@include media-breakpoint-down(xs) { 
+  
+ }
+
+@include media-breakpoint-down(sm) { 
+    .cadre::before{
+        content: none;
+    }
+    .left-float-content
+    {
+        float: none;
+    }
+
+    .right-float-content
+    {
+        float: none;
+    }
+
+    .content {
+        width: 100%;
+    }
+    
+    .title-section{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+ }
+@include media-breakpoint-down(md) { 
+
+ }
+@include media-breakpoint-down(lg) { 
+    .wrapper {
+        
+        /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
+        perspective: 4px;
+    }
+ }

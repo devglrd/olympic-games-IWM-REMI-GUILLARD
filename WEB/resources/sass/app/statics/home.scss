@@ -1,0 +1,296 @@
+/*------------------------------ Home Page ------------------------------*/
+
+
+.homepage{
+    &.main-section::after {
+        background-image: url('/images/hp_2.jpg');
+        background-position-x: center;
+        background-position-y: center;
+    }
+
+    &.bg2::after {
+        background-image: url('/images/hp_2.jpg');
+        background-position-x: center;
+        background-position-y: top;
+    }
+    
+    &.bg3::after {
+        background-image: url('/images/urban-velo.jpg');
+        background-position-x: center;
+        background-position-y: top;
+    }
+
+    &.green-image-bg3{
+        background-color: rgba(60, 169, 122, 0.6);
+    }
+    
+}
+
+/* maj vince congy*/
+@include media-breakpoint-down(lg) {
+    .titre-beetogreen{
+        font-size: 2.5rem; 
+        color: $secondary-color;
+        text-transform: uppercase;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .titre-beetogreen{
+        font-size: 3rem; 
+        color: $secondary-color;
+    }
+}
+
+
+.card-products {
+    overflow: hidden;
+    border: none;
+    box-shadow: -10px 20px 25px rgba(grey, .8);
+    background: #f2f2f1;
+    border: none !important;
+    border-radius: 15px;
+    
+    .card-body {
+        border-radius: 20px;
+    }
+    
+    .thumb {
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        //min-width: 300px;
+    }
+
+    .bg-velo{
+        background-image: url("/images/velo.jpg");
+        background-position-x: center;
+        background-position-y: center;
+    }
+
+    .bg-velo-elec{
+        background-image: url("/images/velo_electrique.jpg");
+        background-position-x: center;
+        background-position-y: center;
+    }
+
+    .bg-trotinette{
+        background-image: url("/images/trotinette.jpg");
+        background-position-x: center;
+        background-position-y: center;
+    }
+
+    .bg-scooter{
+        background-image: url("/images/scooter.jpg");
+        background-position-x: center;
+        background-position-y: center;
+    }
+
+    .bg-cargo{
+        background-image: url("/images/cargo.png");
+        background-position-x: center;
+        background-position-y: center;
+    }
+}
+
+.soixante-sept{
+    font-size: 2rem;
+    //background-color: $primary-color-a;
+    color: $secondary-color;
+    padding-right: 4rem!important;
+}
+
+.opinion{
+    font-size: 1.3rem;
+}
+
+
+.mission-texte{
+    font-size: 2em;
+}
+
+.subventions{
+    font-size: 1.8em;
+    color:$primary-color;
+}
+
+.subventions-li {
+    font-size: 1.6em;
+    color:black;
+}
+
+.citation{
+    font-size: 23px;
+    color:$primary-color;
+}
+
+.avantages-title{
+    font-size: 1.4em;
+    color:$primary-color;
+}
+
+.avantages-title-example{
+    font-size: 1.4em;
+    color:black;
+}
+
+.products-text {
+    color: $secondary-color;
+    font-size: 1.6rem;
+    background-color: $primary-color-a;
+}
+
+.avantages-text {
+    color: black;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 1.2rem;
+}
+
+.avantages-text-title{
+    color: black;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 10px !important;
+}
+
+.avantages-text-result{
+    color: $primary-color;
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding: 15px !important;
+    border-top: solid 2px $primary-color;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.mission, .premiere-plateforme{
+    //background: $primary-color;
+    color: $secondary-color;
+}
+
+.fond-premiere{
+    color:rgb(242,242,242);    
+    font-size: 10rem; 
+    position: absolute; 
+    z-index:-1; 
+    left:15%; 
+    bottom:10%;
+    opacity: 30%;
+}
+
+
+.row-section-one{
+    margin-top: 3rem;
+}
+
+.div-subventions{
+    margin-top: 2rem;
+}
+
+.div-citation{
+    margin-top: 1.5rem;
+}
+
+
+@include media-breakpoint-down(sm) {
+    .row-section-one{
+        margin-top: 0rem;
+    }
+
+    .div-subventions{
+        margin-top: 0rem;
+    }
+    .div-firstPlatform{
+        margin-top: 0rem;
+    }
+
+    .div-citation{
+        margin-top: 0rem;
+    }
+}
+/*end home*/
+
+
+/*
+
+.second-ab {
+    margin-top: 40px;
+    position: relative;
+    width: 100%;
+
+    span {
+        position: absolute;
+        right: 0px;
+        left: 0;
+        top: -50px;
+        text-transform: uppercase;
+        font-size: 60px;
+        color: grey;
+        opacity: 0.3;
+    }
+}
+
+.container-contact {
+    background: black;
+    color: $secondary-color;
+}
+
+.container-contact-row {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.des-questions {
+    margin-left: 20px;
+}
+
+
+.overlay {
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(black, .4);
+    position: absolute;
+}
+
+
+.entete {
+    background-image: url('/images/hp_1.jpg');
+    padding-bottom: 44.75%;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-contacts {
+    border: none;
+    background: transparent !important;
+}
+
+.row-container {
+    position: relative !important;
+}
+
+.name {
+    border: solid 4px white;
+    padding: 4px;
+    border-radius: 3px;
+}
+
+
+    .first-ab {
+        position: relative;
+
+        span {
+            position: absolute;
+            right: 0px;
+            font-size: 140px;
+            color: grey;
+            opacity: 0.3;
+            z-index: -1;
+        }
+    }
+
+*/

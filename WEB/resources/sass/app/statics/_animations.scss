@@ -1,0 +1,123 @@
+
+/* Key frames */
+@-webkit-keyframes slide-right {
+    to {
+        transform:translateX(0);
+    }
+}
+@keyframes slide-right {
+    to {
+        transform:translateX(0);
+    }
+}
+
+@-webkit-keyframes slide-top {
+    to {
+        transform:translateY(0);
+    }
+}
+@keyframes slide-top {
+    to {
+        transform:translateY(0);
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}  
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+
+@-webkit-keyframes apparition {
+    from { top: -45px; }
+      to { top: 0px; }
+}  
+@keyframes apparition {
+    from { top: -45px; }
+      to { top: 0px; }
+}
+
+/* End key frames */
+
+/* Animation classe */
+.main-slide-left-to-right{
+    -webkit-animation: 1s slide-right 1s forwards;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    animation: 1s slide-right 1s forwards;
+    transform: translateX(-150%);
+}
+
+.main-slide-right-to-left{
+    -webkit-animation: 1s slide-right 1s forwards;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    animation: 1s slide-right 1s forwards;
+    transform: translateX(150%);
+}
+
+.slide-left-to-right{
+    -webkit-animation: slide-right 2s forwards;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+    animation: slide-right 2s forwards;
+    transform: translateX(-200%);
+}
+
+.slide-right-to-left{
+    -webkit-animation: slide-right 2s forwards;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+    animation: slide-right 2s forwards;
+    transform: translateX(200%);
+}
+
+.slide-fast-left-to-right{
+    -webkit-animation: slide-right 2s forwards;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+    animation: slide-right 2s forwards;
+    transform: translateX(-150%);
+}
+
+.slide-fast-right-to-left{
+    -webkit-animation: slide-right 2s forwards;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+    animation: slide-right 1s forwards;
+    transform: translateX(150%);
+}
+
+
+.slide-top-to-bottom{
+    -webkit-animation: slide-top 1s forwards;
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+    animation: slide-top 1s forwards;
+    transform: translateY(-100%);
+}
+
+.slide-bottom-to-top{
+    -webkit-animation: slide-top 2s forwards;
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+    animation: slide-top 2s forwards;
+    transform: translateY(200%);
+}
+
+.fadeIn {
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+}
+
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
+/* End animation classes */
