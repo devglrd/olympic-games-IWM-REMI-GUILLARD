@@ -31,7 +31,7 @@ export class Score extends BaseEntity {
   @Column({ length: 255 })
   email: string;
 
-  @ManyToOne((type) => Event, (event) => event.scores)
+  @ManyToOne((type) => Event, (event) => event.scores, )
   event: Event;
 }
 

@@ -34,7 +34,7 @@ export class Sport extends BaseEntity {
   @Column({ nullable: true })
   file: number;
 
-  @OneToMany((type) => Event, (event) => event.sport)
+  @OneToMany((type) => Event, (event) => event.sport, {eager: true})
   event: Event[];
 
   @CreateDateColumn()

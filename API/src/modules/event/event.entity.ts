@@ -37,13 +37,13 @@ export class Event extends BaseEntity {
   @Column({ length: 255 })
   content: string;
 
-  @ManyToOne((type) => Sport, (sport) => sport.event)
+  @ManyToOne((type) => Sport, (sport) => sport.event, )
   sport: Sport;
 
-  @ManyToOne((type) => EventCategory, (cat) => cat.events)
+  @ManyToOne((type) => EventCategory, (cat) => cat.events, {eager: true})
   category: EventCategory;
 
-  @OneToMany((type) => Score, (event) => event.event)
+  @OneToMany((type) => Score, (event) => event.event, {eager: true})
   scores: Score[];
 }
 
