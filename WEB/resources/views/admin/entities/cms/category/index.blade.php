@@ -9,6 +9,7 @@
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Category List</h1>
+            <button class="btn btn-success">Ajouter une category</button>
         </div>
         <div class="table-responsive">
             <table class="table tabl    e-striped table-sm">

@@ -16,6 +16,10 @@ export class ScoreService {
         return this.scoreRepository.find({where : {validate: true}});
     }
 
+    async hasValidateIndex(){
+        return this.scoreRepository.find({where : {validate: 0}});
+    }
+
     async store(data) {
         const score = new Score();
         const event = await Event.findOne({where: {id: data.event}});

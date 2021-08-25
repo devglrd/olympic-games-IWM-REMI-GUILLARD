@@ -36,6 +36,7 @@ class StaticsController extends Controller
             "unit"  => $request->get('unit'),
             "email" => $request->get('email'),
         ]);
+
         if (isset(json_decode($response->body())->data)) {
             $data = json_decode($response->body())->data;
 
