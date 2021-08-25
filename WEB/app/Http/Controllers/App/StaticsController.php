@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\App;
@@ -73,18 +74,21 @@ class StaticsController extends Controller
     function login(Request $request)
     {
         $response = Http::post('http://127.0.0.1:3000/api/auth/login', [
-            "email"  => $request->get('email'),
+            "email"    => $request->get('email'),
             "password" => $request->get('password'),
         ]);
 
         if (isset(json_decode($response->body())->accessToken)) {
             $data = json_decode($response->body());
-            dd($data);
+            session()->put('auth', true);
+            session()->put('token', $data->accessToken);
+            session()->put('user', json_encode($data->user));
+
+            return redirect()->action([AdminController::class, 'dashboard']);
             //return redirect()->back()->with('success', 'Votre score à bien été enregistré.');
         }
 
         return redirect()->back()->with('error', 'Wrong credentials');
-
 
 
     }

@@ -5,11 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Event } from './event.entity';
 import { EventCategory } from './eventCategory.entity';
 import { SportModule, SportService } from '../sport';
+import {EventCategoryController} from "./eventCategory.controller";
+import {CategoryService} from "./category.service";
 
 @Module({
   imports: [TypeOrmModule.forFeature([Event, EventCategory])],
-  exports: [EventService],
-  providers: [EventService],
-  controllers: [EventController],
+  exports: [EventService, CategoryService],
+  providers: [EventService, CategoryService],
+  controllers: [EventController, EventCategoryController],
 })
 export class EventModule {}
