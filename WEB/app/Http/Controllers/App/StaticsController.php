@@ -18,23 +18,75 @@ class StaticsController extends Controller
 
     const CONTROLLER = 'App\StaticsController@';
 
-    public function home(Request $request)
+    public function store(Request $request)
+    {
+        $request->validate([
+            "sport" => "required",
+            "event" => "required",
+            "type"  => "required",
+            "score" => "required",
+            "unit"  => "required",
+            "email" => "required",
+        ]);
+        $response = Http::post('http://127.0.0.1:3000/api/scores', [
+            "type"  => $request->get('type'),
+            "event" => $request->get('event'),
+            "score" => $request->get('score'),
+            "unit"  => $request->get('unit'),
+            "email" => $request->get('email'),
+        ]);
+        if (isset(json_decode($response->body())->data)) {
+            $data = json_decode($response->body())->data;
+
+            return redirect()->back()->with('success', 'Votre score à bien été enregistré.');
+        }
+
+        return redirect()->back()->with('error', 'Un problème est survenue');
+
+    }
+
+
+    public
+    function home(Request $request)
     {
 
 
         $response = Http::get('http://127.0.0.1:3000/api/sports');
-        $data =json_decode($response->body())->data;
+        $data = json_decode($response->body())->data;
+
         return view(self::PATH_VIEW . 'home')->with([
             "sports" => $data
         ]);
     }
 
 
-    public function login(Request $request)
+    public
+    function loginView(Request $request)
     {
 
         return view(self::AUTH_VIEW . 'login')->with([
         ]);
+    }
+
+
+    public
+    function login(Request $request)
+    {
+        $response = Http::post('http://127.0.0.1:3000/api/auth/login', [
+            "email"  => $request->get('email'),
+            "password" => $request->get('password'),
+        ]);
+
+        if (isset(json_decode($response->body())->accessToken)) {
+            $data = json_decode($response->body());
+            dd($data);
+            //return redirect()->back()->with('success', 'Votre score à bien été enregistré.');
+        }
+
+        return redirect()->back()->with('error', 'Wrong credentials');
+
+
+
     }
 
 }

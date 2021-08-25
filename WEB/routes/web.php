@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\App\StaticsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,14 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '', 'namespace' => 'App'], function () {
     Route::get('/', [\App\Http\Controllers\App\StaticsController::class, 'home']);
+    Route::post('/', [\App\Http\Controllers\App\StaticsController::class, 'store']);
+
 });
 
 
-Route::get('/login', [\App\Http\Controllers\App\StaticsController::class, 'login'])
+Route::get('/login', [\App\Http\Controllers\App\StaticsController::class, 'loginView'])
     ->middleware('guest')
     ->name('login');
 
-Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+Route::post('/login', [StaticsController::class, 'login'])
     ->middleware('guest');
 
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])

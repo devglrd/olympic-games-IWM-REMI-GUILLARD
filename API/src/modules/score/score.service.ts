@@ -13,7 +13,7 @@ export class ScoreService {
     }
 
     async index() {
-        return this.scoreRepository.find();
+        return this.scoreRepository.find({where : {validate: true}});
     }
 
     async store(data) {

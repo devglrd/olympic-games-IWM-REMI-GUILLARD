@@ -3,7 +3,8 @@
 <script src="{{ asset('js/app.js') }}"></script>
 
 <!-- Start of HubSpot Embed Code -->
-<script src="{{ asset('pages-assets/js/notie.js') }}" type="text/javascript"></script>
+{{--<script src="{{ asset('pages-assets/js/notie.js') }}" type="text/javascript"></script>--}}
+
 <!-- End of HubSpot Embed Code -->
 
 @include('app.partials.notifications')

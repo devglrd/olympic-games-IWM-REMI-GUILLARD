@@ -15,6 +15,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+.form-control{
+    background-color: white !important;
+}
 .accordion{
     .badge{
         font-size: 14px;

@@ -11273,6 +11273,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.form-control {
+  background-color: white !important;
+}
+
 .accordion .badge {
   font-size: 14px;
 }

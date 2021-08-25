@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Event } from './event.entity';
+import {ScoreResssource} from "../score/score-resssource";
 
 @Injectable()
 export class EventResssource {
@@ -12,7 +13,7 @@ export class EventResssource {
       startAt: user.startAt,
       time: user.time,
       sport: user.sport,
-      scores: user.scores,
+      scores: ScoreResssource.collection(user.scores),
       category: user.category,
     };
   }
@@ -27,7 +28,7 @@ export class EventResssource {
         startAt: user.startAt,
         time: user.time,
         sport: user.sport,
-        scores: user.scores,
+        scores: ScoreResssource.collection(user.scores),
         category: user.category,
       };
     });

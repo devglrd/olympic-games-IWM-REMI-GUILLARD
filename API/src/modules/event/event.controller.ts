@@ -10,10 +10,10 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { EventService } from './event.service';
-import { EventResssource } from './sport-resssource';
 import { AuthGuard } from '@nestjs/passport';
 import { SportResssource } from '../sport/sport-resssource';
 import { SportService } from '../sport';
+import {EventResssource} from "./event-resssource";
 
 @ApiTags('events')
 @Controller('events')
@@ -21,13 +21,25 @@ export class EventController {
   constructor(private readonly eventService: EventService) {}
 
   @Get()
-  async index(@Res() res) {
+  async index(@Req() req, @Res() res) {
+    if(req.query.filter && req.query.filterType  === "sport"){
+      const events = await this.eventService.filterSport(req.query.filter)
+      return res.send({
+        data: EventResssource.collection(events),
+      });
+    }
     const events = await this.eventService.index();
     return res.send({
       data: EventResssource.collection(events),
     });
   }
 
+
+
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  @ApiResponse({ status: 200, description: 'Successful Response' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   @Post()
   async store(@Req() req, @Res() res) {
     // const sport = await this.sportService.find(req.sport)
@@ -37,6 +49,10 @@ export class EventController {
     });
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  @ApiResponse({ status: 200, description: 'Successful Response' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   @Put(':id')
   async update(@Req() req, @Res() res) {
     // const sport = await this.sportService.find(req.sport)
@@ -46,6 +62,10 @@ export class EventController {
     });
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  @ApiResponse({ status: 200, description: 'Successful Response' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
   @Delete(':id')
   async delete(@Req() req, @Res() res) {
     // const sport = await this.sportService.find(req.sport)

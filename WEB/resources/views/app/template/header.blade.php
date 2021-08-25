@@ -18,6 +18,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="keywords"
           content="{{ isset($page) && $page->seo_keywords ? $page->seo_keywords : 'Olympics Games' }}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notie/4.3.1/notie.css">
     @yield('css')
 </head>
 <body class="@yield('bodyClass')">
