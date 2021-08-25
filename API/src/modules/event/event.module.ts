@@ -7,9 +7,10 @@ import { EventCategory } from './eventCategory.entity';
 import { SportModule, SportService } from '../sport';
 import {EventCategoryController} from "./eventCategory.controller";
 import {CategoryService} from "./category.service";
+import {AuthModule} from "../auth";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Event, EventCategory])],
+  imports: [TypeOrmModule.forFeature([Event, EventCategory]), AuthModule],
   exports: [EventService, CategoryService],
   providers: [EventService, CategoryService],
   controllers: [EventController, EventCategoryController],

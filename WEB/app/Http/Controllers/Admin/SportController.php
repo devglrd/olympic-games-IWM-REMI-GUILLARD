@@ -40,8 +40,19 @@ class SportController extends Controller
 
     }
 
-    public function delete()
+    public function delete(Request  $request, $id)
     {
+        try {
+            $token = $request->token;
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer '. $token,
+            ])->delete('http://127.0.0.1:3000/api/sports/' . $id, [],[]);
+            dd($response->body());
+        } catch (\Exception $e) {
+
+        }
+
+        return redirect()->action([SportController::class, 'index']);
 
     }
 }

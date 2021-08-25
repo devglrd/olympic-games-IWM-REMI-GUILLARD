@@ -69,6 +69,7 @@ export class EventController {
   @Delete(':id')
   async delete(@Req() req, @Res() res) {
     // const sport = await this.sportService.find(req.sport)
+    console.log('ok');
     const event = await this.eventService.delete(req.params.id);
     return res.send({
       data: 'Success',

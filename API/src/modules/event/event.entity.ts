@@ -40,10 +40,10 @@ export class Event extends BaseEntity {
   @ManyToOne((type) => Sport, (sport) => sport.event, )
   sport: Sport;
 
-  @ManyToOne((type) => EventCategory, (cat) => cat.events, {eager: true})
+  @ManyToOne((type) => EventCategory, (cat) => cat.events, {eager: true, onDelete: 'CASCADE'})
   category: EventCategory;
 
-  @OneToMany((type) => Score, (event) => event.event, {eager: true})
+  @OneToMany((type) => Score, (event) => event.event, {eager: true, onDelete: 'CASCADE',})
   scores: Score[];
 }
 

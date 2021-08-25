@@ -19,7 +19,7 @@ export class ScoreResssource {
     }
 
     static collection(scores: Score[]) {
-        return scores.map((score: Score) => {
+        return scores ? scores.map((score: Score) => {
             if (score.validate) {
                 return {
                     id: score.id,
@@ -31,6 +31,6 @@ export class ScoreResssource {
                     event: score.event,
                 };
             }
-        }).filter(e => e !== undefined);
+        }).filter(e => e !== undefined) : [];
     }
 }

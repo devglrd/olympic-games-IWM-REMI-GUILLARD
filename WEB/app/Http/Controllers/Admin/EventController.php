@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 class EventController extends Controller
 {
     const PATH_VIEW = 'admin.entities.cms.events.';
+
     public function index()
     {
         $response = Http::get('http://127.0.0.1:3000/api/events');
@@ -40,8 +41,18 @@ class EventController extends Controller
 
     }
 
-    public function delete()
+    public function delete(Request  $request, $id)
     {
+        try {
+            $token = $request->token;
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer '. $token,
+            ])->delete('http://127.0.0.1:3000/api/events/' . $id, [],[]);
+        } catch (\Exception $e) {
+
+        }
+
+        return redirect()->action([EventController::class, 'index']);
 
     }
 }

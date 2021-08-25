@@ -11,7 +11,7 @@
             <h1 class="h2">Category List</h1>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table class="table tabl    e-striped table-sm">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -21,14 +21,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($sports as $sport)
+                @foreach($sports as $cat)
                     <tr>
-                        <td>{{ $sport->id }}</td>
-                        <td>{{ $sport->name }}</td>
-                        <td>{{ $sport->type }}</td>
+                        <td>{{ $cat->id }}</td>
+                        <td>{{ $cat->name }}</td>
+                        <td>{{ $cat->type }}</td>
                         <td>
                             <button class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <form
+                                action="{{ action([\App\Http\Controllers\Admin\EventCategoryController::class, 'delete'], $cat->id) }}"
+                                method="POST">
+                                {{ csrf_field() }}
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

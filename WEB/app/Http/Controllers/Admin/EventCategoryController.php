@@ -40,8 +40,18 @@ class EventCategoryController extends Controller
 
     }
 
-    public function delete()
+    public function delete(Request  $request, $id)
     {
+        try {
+            $token = $request->token;
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer '. $token,
+            ])->delete('http://127.0.0.1:3000/api/category/' . $id, [],[]);
+        } catch (\Exception $e) {
+
+        }
+
+        return redirect()->action([EventCategoryController::class, 'index']);
 
     }
 }

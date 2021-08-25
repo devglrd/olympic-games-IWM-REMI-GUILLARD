@@ -38,27 +38,27 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'namespace' => 'Admi
         Route::get('/', [\App\Http\Controllers\Admin\SportController::class, 'index']);
         Route::get('/create', [\App\Http\Controllers\Admin\SportController::class, 'create']);
         Route::post('/create', [\App\Http\Controllers\Admin\SportController::class, 'store']);
-        Route::get('/edit/:slug', [\App\Http\Controllers\Admin\SportController::class, 'edit']);
-        Route::post('/edit/:slug', [\App\Http\Controllers\Admin\SportController::class, 'update']);
-        Route::post('/delete/:slug', [\App\Http\Controllers\Admin\SportController::class, 'delete']);
+        Route::get('/edit/{slug}', [\App\Http\Controllers\Admin\SportController::class, 'edit']);
+        Route::post('/edit/{slug}', [\App\Http\Controllers\Admin\SportController::class, 'update']);
+        Route::post('/delete/{slug}', [\App\Http\Controllers\Admin\SportController::class, 'delete']);
     });
 
     Route::group(['prefix' => 'category'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\EventCategoryController::class, 'index']);
         Route::get('/create', [\App\Http\Controllers\Admin\EventCategoryController::class, 'create']);
         Route::post('/create', [\App\Http\Controllers\Admin\EventCategoryController::class, 'store']);
-        Route::get('/edit/:slug', [\App\Http\Controllers\Admin\EventCategoryController::class, 'edit']);
-        Route::post('/edit/:slug', [\App\Http\Controllers\Admin\EventCategoryController::class, 'update']);
-        Route::post('/delete/:slug', [\App\Http\Controllers\Admin\EventCategoryController::class, 'delete']);
+        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\EventCategoryController::class, 'edit']);
+        Route::post('/edit/{id}', [\App\Http\Controllers\Admin\EventCategoryController::class, 'update']);
+        Route::post('/delete/{id}', [\App\Http\Controllers\Admin\EventCategoryController::class, 'delete']);
     });
 
     Route::group(['prefix' => 'event'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\EventController::class, 'index']);
         Route::get('/create', [\App\Http\Controllers\Admin\EventController::class, 'create']);
         Route::post('/create', [\App\Http\Controllers\Admin\EventController::class, 'store']);
-        Route::get('/edit/:slug', [\App\Http\Controllers\Admin\EventController::class, 'edit']);
-        Route::post('/edit/:slug', [\App\Http\Controllers\Admin\EventController::class, 'update']);
-        Route::post('/delete/:slug', [\App\Http\Controllers\Admin\EventController::class, 'delete']);
+        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\EventController::class, 'edit']);
+        Route::post('/edit/{id}', [\App\Http\Controllers\Admin\EventController::class, 'update']);
+        Route::post('/delete/{id}', [\App\Http\Controllers\Admin\EventController::class, 'delete']);
     });
 
 });

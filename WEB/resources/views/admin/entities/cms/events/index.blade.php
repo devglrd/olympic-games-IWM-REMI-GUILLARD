@@ -15,7 +15,7 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Epreuve</th>
                     <th scope="col">Location</th>
                     <th scope="col">Jour</th>
                     <th scope="col">Horaire</th>
@@ -23,16 +23,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($sports as $sport)
+                @foreach($sports as $event)
                     <tr>
-                        <td>{{ $sport->id }}</td>
-                        <td>{{ $sport->name }}</td>
-                        <td>{{ $sport->location ?? '-' }}</td>
-                        <td>{{ \Carbon\Carbon::parse($sport->startAt)->toDateString() ?? '-' }}</td>
-                        <td>{{ \Carbon\Carbon::parse($sport->time)->toTimeString() ?? '-' }}</td>
+                        <td>{{ $event->id }}</td>
+                        <td>{{ $event->category->name }}</td>
+                        <td>{{ $event->location ?? '-' }}</td>
+                        <td>{{ \Carbon\Carbon::parse($event->startAt)->toDateString() ?? '-' }}</td>
+                        <td>{{ \Carbon\Carbon::parse($event->time)->toTimeString() ?? '-' }}</td>
                         <td>
                             <button class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <form
+                                action="{{ action([\App\Http\Controllers\Admin\EventController::class, 'delete'], $event->id) }}"
+                                method="POST">
+                                {{ csrf_field() }}
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

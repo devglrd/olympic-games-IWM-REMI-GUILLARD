@@ -3,6 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {Sport} from './sport.entity';
 import slugify from 'slugify';
+import {EventCategory} from "../event/eventCategory.entity";
 
 @Injectable()
 export class SportService {
@@ -36,8 +37,13 @@ export class SportService {
         return await sport.save();
     }
 
-    async delete(slug) {
-        const sport = await this.sportRepository.findOne({where: {slug}});
-        return await this.sportRepository.delete(sport);
+    async delete(id) {
+        const sport = await Sport.findOne({where: {id}});
+        console.log(sport.cat, '----');
+        await sport.cat.forEach(async (e) => {
+            await e.remove()
+        })
+        return await sport.remove();
+        // return await this.sportRepository.delete(sport);
     }
 }

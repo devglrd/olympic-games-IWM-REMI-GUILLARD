@@ -1,10 +1,11 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {Sport} from '../sport';
-import {Repository} from 'typeorm';
+import {getConnection, Repository} from 'typeorm';
 import {Event} from './event.entity';
 import {EventCategory} from './eventCategory.entity';
 import moment from 'moment';
+import {Score} from "../score";
 
 @Injectable()
 export class EventService {
@@ -67,6 +68,12 @@ export class EventService {
 
     async delete(id) {
         const event = await Event.findOne({where: {id}});
-        return await this.eventRepository.delete(event);
+        
+        event.scores.map(async (e) => {
+            const score = await Score.findOne(e.id);
+            await score.remove();
+        })
+
+        return await event.remove()
     }
 }

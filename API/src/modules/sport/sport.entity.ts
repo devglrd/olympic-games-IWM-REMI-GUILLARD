@@ -12,6 +12,7 @@ import {
 } from 'typeorm';
 import { Event } from '../event';
 import { File } from '../file';
+import {EventCategory} from "../event/eventCategory.entity";
 
 @Entity({
   name: 'sports',
@@ -29,13 +30,17 @@ export class Sport extends BaseEntity {
   @Column({ length: 1000, nullable: true })
   content: string;
 
-  @OneToOne((type) => File)
+  @OneToOne((type) => File, {onDelete: 'CASCADE'})
   @JoinColumn({ name: 'fk_file_id' })
   @Column({ nullable: true })
   file: number;
 
-  @OneToMany((type) => Event, (event) => event.sport, {eager: true})
+  @OneToMany((type) => Event, (event) => event.sport, {eager: true, onDelete: 'CASCADE',})
   event: Event[];
+
+  @OneToMany((type) => EventCategory, (event) => event.sport, {eager: true, onDelete: 'CASCADE',})
+  cat: EventCategory[];
+
 
   @CreateDateColumn()
   createdAt: Date;

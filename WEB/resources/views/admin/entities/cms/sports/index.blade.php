@@ -30,7 +30,12 @@
                         <td>{{ count($sport->event) }}</td>
                         <td>
                             <button class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
+                            <form
+                                action="{{ action([\App\Http\Controllers\Admin\SportController::class, 'delete'], $sport->id) }}"
+                                method="POST">
+                                {{ csrf_field() }}
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

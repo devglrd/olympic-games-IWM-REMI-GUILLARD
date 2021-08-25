@@ -39,9 +39,9 @@ export class EventCategoryController {
     @Post()
     async store(@Req() req, @Res() res) {
         // const sport = await this.sportService.find(req.sport)
-        const event = await this.eventService.store(req.body);
+        const event = await this.catService.store(req.body);
         return res.send({
-            data: EventResssource.toArray(event),
+            data: EventCategoryResssource.toArray(event),
         });
     }
 
@@ -52,9 +52,9 @@ export class EventCategoryController {
     @Put(':id')
     async update(@Req() req, @Res() res) {
         // const sport = await this.sportService.find(req.sport)
-        const event = await this.eventService.update(req.body, req.params.id);
+        const event = await this.catService.update(req.body, req.params.id);
         return res.send({
-            data: EventResssource.toArray(event),
+            data: EventCategoryResssource.toArray(event),
         });
     }
 
@@ -65,7 +65,7 @@ export class EventCategoryController {
     @Delete(':id')
     async delete(@Req() req, @Res() res) {
         // const sport = await this.sportService.find(req.sport)
-        const event = await this.eventService.delete(req.params.id);
+        const event = await this.catService.delete(req.params.id);
         return res.send({
             data: 'Success',
         });
