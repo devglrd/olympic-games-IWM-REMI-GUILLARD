@@ -28,16 +28,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'namespace' => 'Admi
 
     Route::get('/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
 
-    Route::group(['prefix' => 'sports'], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\SportController::class, 'index']);
-        Route::get('/create', [\App\Http\Controllers\Admin\SportController::class, 'create']);
-        Route::post('/create', [\App\Http\Controllers\Admin\SportController::class, 'store']);
-        Route::get('/edit/:slug', [\App\Http\Controllers\Admin\SportController::class, 'edit']);
-        Route::post('/edit/:slug', [\App\Http\Controllers\Admin\SportController::class, 'update']);
-        Route::post('/delete/:slug', [\App\Http\Controllers\Admin\SportController::class, 'delete']);
-    });
 
-    Route::group(['prefix' => 'score'], function () {
+    Route::group(['prefix' => 'sports'], function () {
         Route::get('/', [\App\Http\Controllers\Admin\SportController::class, 'index']);
         Route::get('/create', [\App\Http\Controllers\Admin\SportController::class, 'create']);
         Route::post('/create', [\App\Http\Controllers\Admin\SportController::class, 'store']);

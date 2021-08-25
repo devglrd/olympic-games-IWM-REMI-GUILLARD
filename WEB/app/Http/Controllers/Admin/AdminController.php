@@ -41,12 +41,13 @@ class AdminController extends Controller
 
     public function refuse(Request $request, $id)
     {
-        $response = Http::get('http://127.0.0.1:3000/api/scores/hasValidate');
+        $token = $request->token;
+        $response = Http::withHeaders([
+            'Authorization' => 'Bearer ' . $token,
+        ])->put('http://127.0.0.1:3000/api/scores/refuse/' . $id);
         $data = json_decode($response->body())->data;
 
-        return view(self::PATH_VIEW . 'dashboard')->with([
-            "scores" => $data
-        ]);
+        return redirect()->action([self::class, 'dashboard']);
     }
 
     public function logout(Request $request)

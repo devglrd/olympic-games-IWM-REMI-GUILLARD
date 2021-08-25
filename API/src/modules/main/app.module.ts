@@ -13,6 +13,8 @@ import { EventModule } from '../event';
 // import { AuthModule } from './../auth';
 // import { ArticleModule } from '../article/article.module';
 // import { SeedsModule } from '../seeds/seeds.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import {HandlebarsAdapter} from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter";
 
 @Module({
   imports: [
@@ -30,6 +32,31 @@ import { EventModule } from '../event';
           entities: [__dirname + './../**/**.entity{.ts,.js}'],
           synchronize: configService.isEnv('dev'),
         } as TypeOrmModuleAsyncOptions;
+      },
+    }),
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        console.log(process.cwd());
+        console.log(__dirname + '/../../../mails');
+        return {
+          transport: `${configService.get('MAIL_DRIVER')}://${configService.get(
+              'MAIL_USERNAME',
+          )}:${configService.get('MAIL_PASSWORD')}@${configService.get(
+              'MAIL_HOST',
+          )}:${configService.get('MAIL_PORT')}`,
+          defaults: {
+            from: '"nest-modules" <modules@nestjs.com>',
+          },
+          template: {
+            dir: process.cwd() + '/mails/',
+            adapter: new HandlebarsAdapter(),
+            options: {
+              strict: true,
+            },
+          },
+        };
       },
     }),
     ConfigModule,

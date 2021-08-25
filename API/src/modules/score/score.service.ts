@@ -13,7 +13,7 @@ export class ScoreService {
     }
 
     async index() {
-        return this.scoreRepository.find({where : {validate: true}});
+        return this.scoreRepository.find({where : {validate: 1}});
     }
 
     async hasValidateIndex(){
@@ -26,7 +26,7 @@ export class ScoreService {
         score.type = data.type;
         score.score = data.score;
         score.unit = data.unit;
-        score.validate = false;
+        score.validate = 0;
         score.email = data.email;
         score.event = event;
         return await score.save();
@@ -38,7 +38,7 @@ export class ScoreService {
         score.type = data.type;
         score.score = data.score;
         score.unit = data.unit;
-        score.validate = false;
+        score.validate = 0;
         score.email = data.email;
         score.event = event;
         return await score.save();
@@ -51,7 +51,7 @@ export class ScoreService {
 
     async validate(id) {
         const score = await Score.findOne({where: id});
-        score.validate = true;
+        score.validate = 1;
         return await score.save();
     }
 
