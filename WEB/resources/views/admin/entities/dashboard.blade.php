@@ -34,7 +34,7 @@
                         <td>{{$score->email}}</td>
                         <td>
                             <a href="{{action([\App\Http\Controllers\Admin\AdminController::class, 'validateScore'], $score->id)}}"
-                               class="btn btn-success">Validér</a>
+                               class="btn btn-success">Valider</a>
                             <a href="{{action([\App\Http\Controllers\Admin\AdminController::class, 'refuse'], $score->id)}}"
                                class="btn btn-danger">Refuser</a>
                         </td>

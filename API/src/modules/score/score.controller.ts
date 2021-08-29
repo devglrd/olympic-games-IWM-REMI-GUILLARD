@@ -69,7 +69,7 @@ export class ScoreController {
         console.log(score.email);
         this.mailerService.sendMail({
             to: score.email,
-            from: 'devglrd@gmail.com',
+            from: 'glrd.remi@gmail.com',
             subject: "Votre score a été accepter",
             html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n' +
                 '        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n' +

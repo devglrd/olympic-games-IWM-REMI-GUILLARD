@@ -38,8 +38,6 @@ import {HandlebarsAdapter} from "@nestjs-modules/mailer/dist/adapters/handlebars
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        console.log(process.cwd());
-        console.log(__dirname + '/../../../mails');
         return {
           transport: `${configService.get('MAIL_DRIVER')}://${configService.get(
               'MAIL_USERNAME',
