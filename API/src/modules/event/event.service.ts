@@ -21,12 +21,16 @@ export class EventService {
         return this.eventRepository.find();
     }
 
+    async find(id) {
+        return this.eventRepository.findOne({where: {id}});
+    }
+
     async filterSport(id) {
         return this.eventRepository.find({relations: ['sport'], where: {sport: {id}}});
     }
 
     async store(data) {
-        const sport = await Sport.findOne({where: {slug: data.sport}});
+        const sport = await Sport.findOne({where: {id: data.sport}});
         const event = new Event();
         const eventCategory = await this.eventCategoryRepository.findOne({
             where: {slug: data.event},
@@ -68,7 +72,7 @@ export class EventService {
 
     async delete(id) {
         const event = await Event.findOne({where: {id}});
-        
+
         event.scores.map(async (e) => {
             const score = await Score.findOne(e.id);
             await score.remove();

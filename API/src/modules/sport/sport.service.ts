@@ -18,7 +18,11 @@ export class SportService {
     }
 
     async find(slug) {
-        return this.sportRepository.find({where: slug});
+        return this.sportRepository.find({where: {slug}});
+    }
+
+    async findOne(id) {
+        return this.sportRepository.findOne({where: {id}});
     }
 
     async store(data) {
@@ -29,8 +33,8 @@ export class SportService {
         return await sport.save();
     }
 
-    async update(data, slug) {
-        const sport = await this.sportRepository.findOne({where: {slug}});
+    async update(data, id) {
+        const sport = await this.sportRepository.findOne({where: {id}});
         sport.name = data.name;
         sport.slug = slugify(data.name);
         sport.content = data.content;

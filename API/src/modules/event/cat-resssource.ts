@@ -9,6 +9,7 @@ export class EventCategoryResssource {
     return {
       id: user.id,
       name: user.name,
+      slug: user.slug,
       type: user.type,
       sport: user.sport,
     };
@@ -19,6 +20,7 @@ export class EventCategoryResssource {
       return {
         id: user.id,
         name: user.name,
+        slug: user.slug,
         type: user.type,
         sport: user.sport,
       };

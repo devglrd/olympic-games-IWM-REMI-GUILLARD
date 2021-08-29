@@ -14,6 +14,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { SportResssource } from '../sport/sport-resssource';
 import { SportService } from '../sport';
 import {EventResssource} from "./event-resssource";
+import {EventCategoryResssource} from "./cat-resssource";
 
 @ApiTags('events')
 @Controller('events')
@@ -31,6 +32,14 @@ export class EventController {
     const events = await this.eventService.index();
     return res.send({
       data: EventResssource.collection(events),
+    });
+  }
+
+  @Get(':id')
+  async show(@Req() req, @Res() res) {
+    const event = await this.eventService.find(req.params.id);
+    return res.send({
+      data: EventResssource.toArray(event),
     });
   }
 

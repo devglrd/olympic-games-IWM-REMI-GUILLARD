@@ -25,9 +25,24 @@ export class EventCategoryController {
 
     @Get()
     async index(@Req() req, @Res() res) {
+        if(req.query.filter && req.query.filterType  === "sport"){
+            console.log('ic');
+            const events = await this.catService.filterSport(req.query.filter)
+            return res.send({
+                data: EventCategoryResssource.collection(events),
+            });
+        }
         const events = await this.catService.index();
         return res.send({
             data: EventCategoryResssource.collection(events),
+        });
+    }
+
+    @Get(':id')
+    async show(@Req() req, @Res() res) {
+        const event = await this.catService.find(req.params.id);
+        return res.send({
+            data: EventCategoryResssource.toArray(event),
         });
     }
 

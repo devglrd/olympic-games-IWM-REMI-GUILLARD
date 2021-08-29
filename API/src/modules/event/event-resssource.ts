@@ -4,33 +4,33 @@ import {ScoreResssource} from "../score/score-resssource";
 
 @Injectable()
 export class EventResssource {
-  static toArray(user: Event) {
+  static toArray(event: Event) {
     return {
-      id: user.id,
-      name: user.name,
-      location: user.location,
-      content: user.content,
-      startAt: user.startAt,
-      time: user.time,
-      sport: user.sport,
-      scores: ScoreResssource.collection(user.scores),
-      category: user.category,
+      id: event.id,
+      name: event.name,
+      location: event.location,
+      content: event.content,
+      startAt: event.startAt,
+      time: event.time,
+      sport: event.sport,
+      scores: ScoreResssource.collection(event.scores),
+      category: event.category,
     };
   }
 
-  static collection(users: Event[]) {
-    return users.map((user: Event) => {
+  static collection(events: Event[]) {
+    return events ? events.map((event: Event) => {
       return {
-        id: user.id,
-        name: user.name,
-        location: user.location,
-        content: user.content,
-        startAt: user.startAt,
-        time: user.time,
-        sport: user.sport,
-        scores: ScoreResssource.collection(user.scores),
-        category: user.category,
+        id: event.id,
+        name: event.name,
+        location: event.location,
+        content: event.content,
+        startAt: event.startAt,
+        time: event.time,
+        sport: event.sport,
+        scores: ScoreResssource.collection(event.scores),
+        category: event.category,
       };
-    });
+    }) : [];
   }
 }

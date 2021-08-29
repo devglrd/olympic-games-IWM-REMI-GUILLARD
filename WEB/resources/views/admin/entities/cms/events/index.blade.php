@@ -9,13 +9,14 @@
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Events List</h1>
-            <button class="btn btn-success">Ajouter un event</button>
+            <a href="{{ action([\App\Http\Controllers\Admin\EventController::class, 'create']) }}" class="btn btn-success">Ajouter un event</a>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Epreuve</th>
                     <th scope="col">Location</th>
                     <th scope="col">Jour</th>
@@ -27,12 +28,13 @@
                 @foreach($sports as $event)
                     <tr>
                         <td>{{ $event->id }}</td>
+                        <td>{{ $event->name }}</td>
                         <td>{{ $event->category->name }}</td>
                         <td>{{ $event->location ?? '-' }}</td>
                         <td>{{ \Carbon\Carbon::parse($event->startAt)->toDateString() ?? '-' }}</td>
                         <td>{{ \Carbon\Carbon::parse($event->time)->toTimeString() ?? '-' }}</td>
                         <td>
-                            <button class="btn btn-primary">Edit</button>
+                            <a href="{{ action([\App\Http\Controllers\Admin\EventController::class, 'edit'], $event->id) }}" class="btn btn-primary">Edit</a>
                             <form
                                 action="{{ action([\App\Http\Controllers\Admin\EventController::class, 'delete'], $event->id) }}"
                                 method="POST">

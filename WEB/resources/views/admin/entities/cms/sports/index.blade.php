@@ -9,7 +9,7 @@
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Sports List</h1>
-            <button class="btn btn-success">Ajouter un sport</button>
+            <a href="{{ action([\App\Http\Controllers\Admin\SportController::class, 'create']) }}" class="btn btn-success">Ajouter un sport</a>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-sm">
@@ -30,7 +30,7 @@
                         <td>{{ $sport->content ?? '-' }}</td>
                         <td>{{ count($sport->event) }}</td>
                         <td>
-                            <button class="btn btn-primary">Edit</button>
+                            <a href="{{ action([\App\Http\Controllers\Admin\SportController::class, 'edit'], $sport->id) }}" class="btn btn-primary">Edit</a>
                             <form
                                 action="{{ action([\App\Http\Controllers\Admin\SportController::class, 'delete'], $sport->id) }}"
                                 method="POST">

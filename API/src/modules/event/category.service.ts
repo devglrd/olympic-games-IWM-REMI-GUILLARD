@@ -21,12 +21,15 @@ export class CategoryService {
         return this.eventCategoryRepository.find();
     }
 
+    async find(id){
+        return this.eventCategoryRepository.findOne({where: {id}});
+    }
     async filterSport(id) {
-        return this.eventRepository.find({relations: ['sport'], where: {sport: {id}}});
+        return this.eventCategoryRepository.find({relations: ['sport'], where: {sport: {id}}});
     }
 
     async store(data) {
-        const sport = await Sport.findOne({where: {slug: data.sport}});
+        const sport = await Sport.findOne({where: {id: data.sport}});
         const event = new EventCategory();
 
         event.name = data.name;

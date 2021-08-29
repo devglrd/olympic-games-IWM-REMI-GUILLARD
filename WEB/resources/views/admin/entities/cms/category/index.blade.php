@@ -9,7 +9,7 @@
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Category List</h1>
-            <button class="btn btn-success">Ajouter une category</button>
+            <a href="{{ action([\App\Http\Controllers\Admin\EventCategoryController::class, 'create']) }}" class="btn btn-success">Ajouter une category</a>
         </div>
         <div class="table-responsive">
             <table class="table tabl    e-striped table-sm">
@@ -28,7 +28,7 @@
                         <td>{{ $cat->name }}</td>
                         <td>{{ $cat->type }}</td>
                         <td>
-                            <button class="btn btn-primary">Edit</button>
+                            <a href="{{ action([\App\Http\Controllers\Admin\EventCategoryController::class, 'edit'], $cat->id) }}" class="btn btn-primary">Edit</a>
                             <form
                                 action="{{ action([\App\Http\Controllers\Admin\EventCategoryController::class, 'delete'], $cat->id) }}"
                                 method="POST">

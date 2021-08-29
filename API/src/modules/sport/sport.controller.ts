@@ -12,6 +12,7 @@ import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SportService } from './sport.service';
 import { SportResssource } from './sport-resssource';
 import { AuthGuard } from '@nestjs/passport';
+import {EventResssource} from "../event/event-resssource";
 
 @ApiTags('sports')
 @Controller('sports')
@@ -23,6 +24,15 @@ export class SportController {
     const sports = await this.sportService.index();
     return res.send({
       data: SportResssource.collection(sports),
+    });
+  }
+
+  @Get(':id')
+  async show(@Req() req, @Res() res) {
+    console.log(req.params.id);
+    const sport = await this.sportService.findOne(req.params.id);
+    return res.send({
+      data: SportResssource.toArray(sport),
     });
   }
 
@@ -42,9 +52,9 @@ export class SportController {
   @UseGuards(AuthGuard())
   @ApiResponse({ status: 200, description: 'Successful Response' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  @Put(':slug')
+  @Put(':id')
   async update(@Req() req, @Res() res) {
-    const sport = await this.sportService.update(req.body, req.params.slug);
+    const sport = await this.sportService.update(req.body, req.params.id);
     return res.send({
       data: SportResssource.toArray(sport),
     });
