@@ -53,7 +53,8 @@ export class ScoreService {
 
     async delete(id) {
         const score = await Score.findOne({where: id});
-        return await this.scoreRepository.delete(score);
+        score.delete = true;
+        return await score.save();
     }
 
     async validate(id) {

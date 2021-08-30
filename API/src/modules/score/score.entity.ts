@@ -9,6 +9,12 @@ import {
 import { Sport } from '../sport';
 import { Event } from '../event';
 
+
+import {GlobalScopes} from "typeorm-global-scopes";
+
+@GlobalScopes<Score>([
+  (qb, alias) => qb.andWhere(`${alias}.delete = 0`)
+])
 @Entity({
   name: 'scores',
 })

@@ -20,6 +20,11 @@ export enum Type {
     Unknow = 'unknow',
 }
 
+import {GlobalScopes} from "typeorm-global-scopes";
+
+@GlobalScopes<EventCategory>([
+    (qb, alias) => qb.andWhere(`${alias}.delete = 0`)
+])
 @Entity({
     name: 'events_category',
 })

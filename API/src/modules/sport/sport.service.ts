@@ -64,9 +64,11 @@ export class SportService {
         const sport = await Sport.findOne({where: {id}});
         console.log(sport.cat, '----');
         await sport.cat.forEach(async (e) => {
-            await e.remove()
+            e.delete = true;
+            await e.save()
         })
-        return await sport.remove();
+        sport.delete = true;
+        return await sport.save();
         // return await this.sportRepository.delete(sport);
     }
 }

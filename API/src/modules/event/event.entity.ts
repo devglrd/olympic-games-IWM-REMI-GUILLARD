@@ -14,6 +14,11 @@ import { Score } from '../score';
 import { EventCategory } from './eventCategory.entity';
 import { Type } from 'class-transformer';
 
+import {GlobalScopes} from "typeorm-global-scopes";
+
+@GlobalScopes<Event>([
+  (qb, alias) => qb.andWhere(`${alias}.delete = 0`)
+])
 @Entity({
   name: 'events',
 })

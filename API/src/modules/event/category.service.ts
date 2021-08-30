@@ -56,6 +56,7 @@ export class CategoryService {
 
     async delete(id) {
         const event = await Event.findOne({where: {id}});
-        return await this.eventRepository.delete(event);
+        event.delete =true;
+        return await event.save();
     }
 }

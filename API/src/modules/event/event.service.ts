@@ -76,9 +76,10 @@ export class EventService {
 
         event.scores.map(async (e) => {
             const score = await Score.findOne(e.id);
-            await score.remove();
+            score.delete = true;
+            await score.save();
         })
-
-        return await event.remove()
+event.delete = true;
+        return await event.save()
     }
 }
