@@ -58,7 +58,6 @@ class EventController extends Controller
             "sport" => $request->get('sport'),
             "event" => $request->get('event'),
         ]);
-
         if (isset(json_decode($response->body())->data)) {
             $data = json_decode($response->body())->data;
 

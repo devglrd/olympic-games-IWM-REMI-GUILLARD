@@ -29,7 +29,7 @@
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Start at</label>
                     <input type="text" id="datepicker" name="startAt" class="form-control"
-                           value="{{ $event->startAt }}">
+                           value="{{ \Carbon\Carbon::createFromFormat("d/m/Y", $event->startAt)->toDateString() }}">
                 </div>
                 <div class="col-6">
                     <label for="inputAddress" class="form-label">Time</label>

@@ -31,8 +31,8 @@
                         <td>{{ $event->name }}</td>
                         <td>{{ $event->category->name }}</td>
                         <td>{{ $event->location ?? '-' }}</td>
-                        <td>{{ \Carbon\Carbon::parse($event->startAt)->toDateString() ?? '-' }}</td>
-                        <td>{{ \Carbon\Carbon::parse($event->time)->toTimeString() ?? '-' }}</td>
+                        <td>{{ \Carbon\Carbon::createFromFormat("d/m/Y", $event->startAt)->toDateString() ?? '-' }}</td>
+                        <td>{{ $event->time ?? '-' }}</td>
                         <td>
                             <a href="{{ action([\App\Http\Controllers\Admin\EventController::class, 'edit'], $event->id) }}" class="btn btn-primary">Edit</a>
                             <form

@@ -16,6 +16,7 @@
                 <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Sport</th>
                     <th scope="col">Name</th>
                     <th scope="col">Type</th>
                     <th scope="col">Action</th>
@@ -25,6 +26,7 @@
                 @foreach($sports as $cat)
                     <tr>
                         <td>{{ $cat->id }}</td>
+                        <td>{{ $cat->sport->name }}</td>
                         <td>{{ $cat->name }}</td>
                         <td>{{ $cat->type }}</td>
                         <td>

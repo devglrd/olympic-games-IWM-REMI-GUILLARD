@@ -35,10 +35,11 @@ export class EventService {
         const eventCategory = await this.eventCategoryRepository.findOne({
             where: {slug: data.event},
         });
+
         event.name = data.name;
         event.location = data.location;
-        event.startAt = new Date(data.startAt).toLocaleDateString().toString();
-        event.time = new Date(data.time).toLocaleTimeString();
+        event.startAt = new Date(data.startAt).toLocaleDateString();
+        event.time = data.time;
         event.content = data.content;
         if (sport) {
             event.sport = sport;
@@ -58,8 +59,8 @@ export class EventService {
 
         event.name = data.name;
         event.location = data.location;
-        event.startAt = new Date(data.startAt).toLocaleDateString().toString();
-        event.time = new Date(data.startAt).toLocaleTimeString();
+        event.startAt = new Date(data.startAt).toLocaleDateString();
+        event.time = data.time;
         event.content = data.content;
         if (sport) {
             event.sport = sport;

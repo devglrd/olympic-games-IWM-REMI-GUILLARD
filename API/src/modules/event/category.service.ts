@@ -18,7 +18,7 @@ export class CategoryService {
     }
 
     async index() {
-        return this.eventCategoryRepository.find();
+        return this.eventCategoryRepository.find({relations: ['sport']});
     }
 
     async find(id){
