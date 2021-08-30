@@ -37,6 +37,9 @@ export class Event extends BaseEntity {
   @Column({ length: 255 })
   content: string;
 
+  @Column({ default: false })
+  delete: boolean;
+
   @ManyToOne((type) => Sport, (sport) => sport.event, )
   sport: Sport;
 

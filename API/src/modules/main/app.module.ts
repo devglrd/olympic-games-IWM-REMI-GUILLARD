@@ -15,6 +15,7 @@ import { EventModule } from '../event';
 // import { SeedsModule } from '../seeds/seeds.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import {HandlebarsAdapter} from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter";
+import {patchSelectQueryBuilder} from "typeorm-global-scopes";
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import {HandlebarsAdapter} from "@nestjs-modules/mailer/dist/adapters/handlebars
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
+        patchSelectQueryBuilder();
         return {
           type: configService.get('DB_TYPE'),
           host: configService.get('DB_HOST'),

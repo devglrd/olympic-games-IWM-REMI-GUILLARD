@@ -27,7 +27,8 @@ export class Score extends BaseEntity {
 
   @Column()
   validate: number;
-
+  @Column({ default: false })
+  delete: boolean;
 
   @Column({ length: 255 })
   email: string;

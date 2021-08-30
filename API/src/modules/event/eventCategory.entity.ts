@@ -33,6 +33,9 @@ export class EventCategory extends BaseEntity {
     @Column('text', {nullable: true})
     type: Type | null;
 
+    @Column({ default: false })
+    delete: boolean;
+
     @Column({length: 255, unique: true})
     slug: string;
 
