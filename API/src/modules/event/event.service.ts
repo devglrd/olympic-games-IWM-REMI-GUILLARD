@@ -37,8 +37,8 @@ export class EventService {
         });
         event.name = data.name;
         event.location = data.location;
-        event.startAt = new Date(data.startAt);
-        event.time = new Date(data.startAt).toLocaleTimeString();
+        event.startAt = new Date(data.startAt).toLocaleDateString().toString();
+        event.time = new Date(data.time).toLocaleTimeString();
         event.content = data.content;
         if (sport) {
             event.sport = sport;
@@ -58,7 +58,7 @@ export class EventService {
 
         event.name = data.name;
         event.location = data.location;
-        event.startAt = new Date(data.startAt);
+        event.startAt = new Date(data.startAt).toLocaleDateString().toString();
         event.time = new Date(data.startAt).toLocaleTimeString();
         event.content = data.content;
         if (sport) {

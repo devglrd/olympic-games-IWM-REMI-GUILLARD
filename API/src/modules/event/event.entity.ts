@@ -29,7 +29,7 @@ export class Event extends BaseEntity {
 
   @Type(() => Date)
   @Column('text')
-  startAt: Date;
+  startAt: string;
 
   @Column({ length: 255 })
   time: string;

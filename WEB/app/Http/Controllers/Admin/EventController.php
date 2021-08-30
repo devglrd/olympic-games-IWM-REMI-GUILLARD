@@ -39,8 +39,9 @@ class EventController extends Controller
     {
         $request->validate([
             "name"     => "required",
-            "location" => "required",
+            "time"     => "required",
             "startAt"  => "required",
+            "location" => "required",
             "content"  => "required",
             "sport"    => "required",
             "event"    => "required",
@@ -50,11 +51,12 @@ class EventController extends Controller
             'Authorization' => 'Bearer ' . $token,
         ])->post('http://127.0.0.1:3000/api/events', [
             "name"     => $request->get('name'),
-            "location" => $request->get('location'),
+            "time"     => $request->get('time'),
             "startAt"  => $request->get('startAt'),
             "content"  => $request->get('content'),
-            "sport"    => $request->get('sport'),
-            "event"    => $request->get('event'),
+            "location" => $request->get('location'),
+            "sport" => $request->get('sport'),
+            "event" => $request->get('event'),
         ]);
 
         if (isset(json_decode($response->body())->data)) {
@@ -70,12 +72,13 @@ class EventController extends Controller
     {
         $response = Http::get('http://127.0.0.1:3000/api/events/' . $id);
         $event = json_decode($response->body())->data;
+
         return view(self::PATH_VIEW . 'edit')->with([
             'event' => $event
         ]);
     }
 
-    public function update(Request  $request, $id)
+    public function update(Request $request, $id)
     {
 
         $request->validate([

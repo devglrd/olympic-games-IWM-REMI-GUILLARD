@@ -37,7 +37,7 @@
                                                     {{ $event->name }}
                                                     <p class="mb-0"><small>Location : {{ $event->location }}</small></p>
                                                     <p class="mt-0"><small>date
-                                                            : {{ \Carbon\Carbon::parse($event->startAt)->toDateString() }} {{ $event->time }}</small>
+                                                            : {{ \Carbon\Carbon::createFromFormat("d/m/Y", $event->startAt)->toDateString() }} {{ $event->time }}</small>
                                                     </p>
                                                     <span
                                                         class="badge badge-info badge-pill text-dark"> {{ $sport->content }}</span>
@@ -69,11 +69,14 @@
                 <form class="row g-3" action="{{ action([\App\Http\Controllers\App\StaticsController::class, 'store']) }}" method="POST">
                     {{csrf_field()}}
                     <div class="col-md-12">
+
                         <label for="inputEmail4" class="form-label">Sport</label>
                         <select name="sport" class="select2 form-control" id="sport">
                             <option value="0"> Selectionner un sport</option>
-                            @foreach($sports as $sport)
-                                <option value="{{$sport->id}}">{{ $sport->name }} ({{count($sport->event)}})</option>
+                            @foreach($forms as $sport)
+                                <option value="{{$sport->id}}">{{ $sport->name }} ({{collect($sport->event)->filter(function($item){
+    return \Carbon\Carbon::createFromFormat("d/m/Y", $item->startAt)->isToday();
+})->count()}})</option>
                             @endforeach
                         </select>
                     </div>
@@ -112,6 +115,7 @@
                     </div>
 
                     <div class="col-12">
+                        <input type="hidden" value="" name="startAt" id="startAt">
                         <button type="submit" id="submitBtn" disabled="disabled" class="btn btn-primary">Soummettre</button>
                     </div>
                 </form>
@@ -142,15 +146,12 @@
                             $('#event-selct').append("<option value=\"0\"> No events for this sport</option>");
 
                         }
-                        data.forEach((e) => {
-                            if (moment(e.startAt).isSame(new Date(), "day")) {
 
+                        data.forEach((e) => {
                                 $('#event-selct').append('<option value="' + e.id + '">' + e.name + '</option>')
-                            }
                         })
                     }
                 })
-                console.log(val);
             })
             $('#event-selct').on('change', function () {
                 $('#form-ctn').removeClass("d-none");

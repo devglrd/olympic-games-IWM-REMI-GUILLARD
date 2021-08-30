@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@ccmos/nestjs-moment": "^0.1.0",
     "@nestjs-modules/mailer": "^1.6.0",
     "@nestjs/common": "8.0.6",
     "@nestjs/config": "^1.0.1",

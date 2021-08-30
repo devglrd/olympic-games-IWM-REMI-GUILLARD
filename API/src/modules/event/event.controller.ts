@@ -15,6 +15,7 @@ import { SportResssource } from '../sport/sport-resssource';
 import { SportService } from '../sport';
 import {EventResssource} from "./event-resssource";
 import {EventCategoryResssource} from "./cat-resssource";
+import moment from "moment";
 
 @ApiTags('events')
 @Controller('events')
@@ -25,8 +26,14 @@ export class EventController {
   async index(@Req() req, @Res() res) {
     if(req.query.filter && req.query.filterType  === "sport"){
       const events = await this.eventService.filterSport(req.query.filter)
+
+
       return res.send({
-        data: EventResssource.collection(events),
+        data: EventResssource.collection(events.filter((e) => {
+          const date = e.startAt.split("/");
+          const validDate = date[1] + "-" + date[0] + "-" + date[2];
+          return moment().isSame(moment(new Date(validDate)), 'day');
+        })),
       });
     }
     const events = await this.eventService.index();

@@ -21,6 +21,7 @@ class StaticsController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             "sport" => "required",
             "event" => "required",
@@ -36,7 +37,9 @@ class StaticsController extends Controller
             "unit"  => $request->get('unit'),
             "email" => $request->get('email'),
         ]);
-
+        if (!isset(json_decode($response->body())->data) && isset(json_decode($response->body())->message)) {
+            return redirect()->back()->with('error', "Event is not today");
+        }
         if (isset(json_decode($response->body())->data)) {
             $data = json_decode($response->body())->data;
 
@@ -52,12 +55,15 @@ class StaticsController extends Controller
     function home(Request $request)
     {
 
-
         $response = Http::get('http://127.0.0.1:3000/api/sports');
         $data = json_decode($response->body())->data;
 
+        $response = Http::get('http://127.0.0.1:3000/api/sports');
+        $form = json_decode($response->body())->data;
+
         return view(self::PATH_VIEW . 'home')->with([
-            "sports" => $data
+            "sports" => $data,
+            "forms"  => $form
         ]);
     }
 

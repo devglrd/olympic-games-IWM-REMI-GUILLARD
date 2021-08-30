@@ -1,15 +1,17 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {Repository} from 'typeorm';
+import {getManager, Repository} from 'typeorm';
 import {Sport} from './sport.entity';
 import slugify from 'slugify';
 import {EventCategory} from "../event/eventCategory.entity";
+import {Event} from '../event';
+import DateTimeFormat = Intl.DateTimeFormat;
 
 @Injectable()
 export class SportService {
     constructor(
         @InjectRepository(Sport)
-        private readonly sportRepository: Repository<Sport>,
+        private readonly sportRepository: Repository<Sport>
     ) {
     }
 
@@ -23,6 +25,23 @@ export class SportService {
 
     async findOne(id) {
         return this.sportRepository.findOne({where: {id}});
+    }
+
+    async filterSport(query) {
+        const date = new Date().toLocaleDateString();
+        const events = await Event.find({relations: ['category', 'category.sport'], where: {startAt: date.toString()}});
+        const sport = [...new Set(await events.map((e) => {
+            return  e.category.sport.id
+        }))];
+        const entityManager = getManager();
+        return await entityManager
+            .createQueryBuilder(Sport, "sports")
+            .where("sports.id IN (:...ids)", {
+                ids: sport,
+            })
+            .getMany();
+
+
     }
 
     async store(data) {

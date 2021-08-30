@@ -14,9 +14,10 @@ export class ScoreController {
 
     @Get()
     async index(@Res() res) {
-        const sports = await this.scoreService.index();
+        const score = await this.scoreService.index();
+
         return res.send({
-            data: ScoreResssource.collection(sports),
+            data: ScoreResssource.collection(score),
         });
     }
 
@@ -37,6 +38,11 @@ export class ScoreController {
     async store(@Req() req, @Res() res) {
         // const sport = await this.sportService.find(req.sport)
         const event = await this.scoreService.store(req.body);
+        if(!event){
+            return res.send({
+                message: "Error not same day"
+            });
+        }
         return res.send({
             data: event,
         });

@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-6">
                     <label for="inputAddress" class="form-label">Time</label>
-                    <input type="text" class="form-control" id="timepicker" name="location">
+                    <input type="text" class="form-control" id="timepicker" name="time">
                 </div>
 
                 <div class="col-md-6">

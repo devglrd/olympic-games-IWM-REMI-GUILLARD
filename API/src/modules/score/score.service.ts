@@ -3,6 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {Score} from './score.entity';
 import {Event} from '../event';
+import moment from "moment";
 
 @Injectable()
 export class ScoreService {
@@ -13,16 +14,22 @@ export class ScoreService {
     }
 
     async index() {
-        return this.scoreRepository.find({where : {validate: 1}});
+        return this.scoreRepository.find({where: {validate: 1}, relations: ['event', 'event.sport']});
     }
 
-    async hasValidateIndex(){
-        return this.scoreRepository.find({where : {validate: 0}});
+    async hasValidateIndex() {
+        return this.scoreRepository.find({where: {validate: 0}});
     }
 
     async store(data) {
         const score = new Score();
         const event = await Event.findOne({where: {id: data.event}});
+        const date = event.startAt.split("/");
+        const validDate = date[1] + "-" + date[0] + "-" + date[2];
+
+        if (!(moment().isSame(moment(new Date(validDate)), 'day'))) {
+            return false;
+        }
         score.type = data.type;
         score.score = data.score;
         score.unit = data.unit;
