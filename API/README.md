@@ -22,6 +22,33 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+#-------------------------------------------------
+<!-- API -->
+## API
+
+**La premiere chose à faire est d'installer les dépendences.**
+<br>
+**Pour se faire executer la commande `npm i` dans le dosier `API`**
+
+
+
+### Faire tourner l'api
+
+* Copier coller le `.env.example` en `.env`
+* Assurez vous d'avoir les bonnes informations concernant la base de données `(DB_USERNAME, DB_HOST, DB_PASSWORD etc...)`
+* Pour faire tourner l'api après avoir installer les dépendances, après avoir copié le .env, et après avoir rentré les informations relatives à la connection de la base de donnée, executer la commande `npm run start:dev`
+* Il est neccessaire de faire un seed de la base de données une fois l'API en fonctionnement pour se faire il faut se rendre sur l'adresse `http://127.0.0.1:3000/seeds` c'est une route protéger, il faut donc lui passer un token pour assurer l'authentification, le token est au niveau du .env dans le champs `SEEDER_TOKEN`. Url complete : `http://127.0.0.1:3000/seeds?token=$SEEDER_TOKEN` (remplacer `SEEDER_TOKEN` par la valeur dans le `.env`) 
+
+
+**L'api devrait tourner sans problème**
+
+
+#### Une fois l'api en fonctionnement, pour avoir une visualisation des routes disponibles de l'api vous pouvez vous rendre sur : *[swagger](http://127.0.0.1:3000/api/docs/)*
+
+![image](https://i.ibb.co/Fbvb2DT/screencapture-127-0-0-1-3000-api-docs-2021-08-31-11-08-04.png)
+
+
+#-------------------------------------------------
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.

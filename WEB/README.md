@@ -7,6 +7,62 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+#---------------------------------------------- 
+<!-- WEB -->
+## Application Web
+
+Pour faire tourner l'application Web, il est nécessaire de faire d'abord `fonctionner l'api`
+
+### Prérequis
+
+* API en fonctionnement
+* PHP
+  ```
+  version : >7.3 minimum
+  ```
+* NPM
+* COMPOSER
+  
+
+### Installation
+
+1. Installer les dépendances
+   ```sh
+   composer install
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Copier le `.env.example`
+   ```sh
+   cp .env.example .env
+   ```
+4. Donnez une `APP_KEY`
+   ```sh
+   php artisan key:generate
+   ```
+5. Générer les assets
+   ```sh
+   npm run prod
+   ```
+6. Faire fonctionner le server PHP
+   ```sh
+   php artisan run
+   ```
+
+#### Vous pouvez ensuite vous rendre sur `http://127.0.0.0.1/8000` pour avoir accès à l'interface *web public* 
+
+#### Interface Admin
+Pour se rendre sur l'interface admin il faut aller sur l'url `/login` pour se connecter.
+
+Le login : `admin@olympicgames.com`
+
+Le mot de passe : `olympicgames2024+!`
+
+Une fois connectez vous êtes automatiquement rediriger sur l'interface admin. 
+
+#----------------------------------------------
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
