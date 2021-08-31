@@ -4,7 +4,7 @@ import { Score } from './score.entity';
 @Injectable()
 export class ScoreResssource {
   static toArray(score: Score) {
-    if (score.validate) {
+    if (score && score.validate) {
       return {
         id: score.id,
         type: score.type,

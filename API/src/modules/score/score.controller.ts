@@ -32,6 +32,22 @@ export class ScoreController {
     });
   }
 
+
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard())
+  @ApiResponse({ status: 200, description: 'Successful Response' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @Get('/hasValidate')
+  async indexValidate(@Res() res) {
+    console.log('la');
+    const score = await this.scoreService.hasValidateIndex();
+    console.log(score);
+    return res.send({
+      data: score,
+    });
+  }
+
+
   @Get(":id")
   async show(@Req() req, @Res() res) {
     const score = await this.scoreService.findOne(req.params.id);
@@ -41,17 +57,7 @@ export class ScoreController {
     });
   }
 
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard())
-  @ApiResponse({ status: 200, description: 'Successful Response' })
-  @ApiResponse({ status: 401, description: 'Unauthorized' })
-  @Get('/hasValidate')
-  async indexValidate(@Res() res) {
-    const score = await this.scoreService.hasValidateIndex();
-    return res.send({
-      data: score,
-    });
-  }
+
 
   @Post()
   async store(@Req() req, @Res() res) {
