@@ -16,17 +16,31 @@ export class ScoreService {
     async index() {
         return this.scoreRepository.find({
             where: {validate: 1},
+            order: {
+                'id': 'DESC',
+            },
             relations: ['event', 'event.sport'],
         });
     }
 
+
+    async indexAll(){
+        return this.scoreRepository.find({
+            order: {
+                'id': 'DESC',
+            },
+            relations: ['event', 'event.sport'],
+        });
+    }
     async findOne(id) {
         return this.scoreRepository.findOne({where: {id}, relations: ['event.sport', 'event']});
 
     }
 
     async hasValidateIndex() {
-        return this.scoreRepository.find({where: {validate: 0}});
+        return this.scoreRepository.find({  order: {
+                'id': 'ASC',
+            }, where: {validate: 0}});
     }
 
     async store(data) {

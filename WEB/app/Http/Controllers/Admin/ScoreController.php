@@ -12,7 +12,7 @@ class ScoreController extends Controller
 
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:3000/api/scores');
+        $response = Http::get('http://127.0.0.1:3000/api/scores/admin');
         $data = json_decode($response->body())->data;
 
         return view(self::PATH_VIEW . 'index')->with([

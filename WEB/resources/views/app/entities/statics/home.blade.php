@@ -44,6 +44,7 @@
                                                 </div>
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     @foreach($event->scores as $score)
+                                                        @if($score->validate === 1)
                                                         <div class="medail mx-3 border-{{$score->type}}">
                                                             <span>Médailles : {{$score->type}}</span>
                                                             <span>
@@ -51,6 +52,7 @@
                                                     </span>
 
                                                         </div>
+                                                        @endif
                                                     @endforeach
                                                 </div>
                                             </div>

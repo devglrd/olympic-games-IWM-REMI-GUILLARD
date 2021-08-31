@@ -13,7 +13,7 @@ export class SportService {
   ) {}
 
   async index() {
-    return this.sportRepository.find({ relations: ['event', 'event.scores'] });
+    return this.sportRepository.find({ relations: ['event', 'event.scores']});
   }
 
   async find(slug) {

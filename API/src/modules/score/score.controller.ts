@@ -33,6 +33,16 @@ export class ScoreController {
   }
 
 
+  @Get('/admin')
+  async indexAdmin(@Res() res) {
+    const scores = await this.scoreService.indexAll();
+
+    return res.send({
+      data: ScoreResssource.collection(scores),
+    });
+  }
+
+
   @ApiBearerAuth()
   @UseGuards(AuthGuard())
   @ApiResponse({ status: 200, description: 'Successful Response' })
