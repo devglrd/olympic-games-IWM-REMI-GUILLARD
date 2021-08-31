@@ -75,7 +75,7 @@ export class ScoreController {
         console.log(score.email);
         this.mailerService.sendMail({
             to: score.email,
-            from: 'glrd.remi@gmail.com',
+            from: 'olympics@gmail.com',
             subject: "Votre score a été accepter",
             html: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"\n' +
                 '        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n' +
@@ -215,7 +215,7 @@ export class ScoreController {
                 '                                    style="text-align:left;color: #324e6d;">\n' +
                 '                                    <div style="font-size: 16px; padding-top:30px;display: inline-block">\n' +
                 '                                        <span style="color: #1B1624;\tfont-family: \'Roboto\', sans-serif;;\tfont-size: 24px;\tfont-weight: bold;\tline-height: 28px;">\n' +
-                '                                       Score accepté !\n' +
+                '                                       Well done the score you submitted has been accepted!\n' +
                 '                                        </span>\n' +
                 '                                    </div>\n' +
                 '                                </td>\n' +
