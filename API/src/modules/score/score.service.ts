@@ -3,7 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {Repository} from 'typeorm';
 import {Score} from './score.entity';
 import {Event} from '../event';
-import moment from "moment";
+import moment from 'moment';
 
 @Injectable()
 export class ScoreService {
@@ -14,7 +14,15 @@ export class ScoreService {
     }
 
     async index() {
-        return this.scoreRepository.find({where: {validate: 1}, relations: ['event', 'event.sport']});
+        return this.scoreRepository.find({
+            where: {validate: 1},
+            relations: ['event', 'event.sport'],
+        });
+    }
+
+    async findOne(id) {
+        return this.scoreRepository.findOne({where: {id}, relations: ['event.sport', 'event']});
+
     }
 
     async hasValidateIndex() {
@@ -24,17 +32,18 @@ export class ScoreService {
     async store(data) {
         const score = new Score();
         const event = await Event.findOne({where: {id: data.event}});
-        const date = event.startAt.split("/");
-        const validDate = date[1] + "-" + date[0] + "-" + date[2];
-
-        if (!(moment().isSame(moment(new Date(validDate)), 'day'))) {
-            return false;
+        const date = event.startAt.split('/');
+        const validDate = date[1] + '-' + date[0] + '-' + date[2];
+        if (!data.admin) {
+            if (!moment().isSame(moment(new Date(validDate)), 'day')) {
+                return false;
+            }
         }
         score.type = data.type;
         score.score = data.score;
         score.unit = data.unit;
-        score.validate = 0;
-        score.email = data.email;
+        score.validate = data.admin ? 1 : 0;
+        score.email = data.admin ? 'olympic@gmail.com' : data.email;
         score.event = event;
         return await score.save();
     }
@@ -45,8 +54,8 @@ export class ScoreService {
         score.type = data.type;
         score.score = data.score;
         score.unit = data.unit;
-        score.validate = 0;
-        score.email = data.email;
+        score.validate = data.admin ? 1 : 0;
+        score.email = data.admin ? 'olympic@gmail.com' : data.email;
         score.event = event;
         return await score.save();
     }
@@ -62,6 +71,4 @@ export class ScoreService {
         score.validate = 1;
         return await score.save();
     }
-
-
 }

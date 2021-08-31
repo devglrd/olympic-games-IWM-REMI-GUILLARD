@@ -66,6 +66,14 @@
                             Event Category
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('admin/scores') ? 'active' : '' }}"
+                           href="{{ action([\App\Http\Controllers\Admin\ScoreController::class, 'index']) }}">
+                            <span data-feather="layers"></span>
+                            Scores
+                        </a>
+                    </li>
                 </ul>
 
             </div>

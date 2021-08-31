@@ -56,6 +56,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'namespace' => 'Admi
         Route::post('/delete/{id}', [\App\Http\Controllers\Admin\EventController::class, 'delete']);
     });
 
+    Route::group(['prefix' => 'scores'], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ScoreController::class, 'index']);
+        Route::get('/create', [\App\Http\Controllers\Admin\ScoreController::class, 'create']);
+        Route::post('/create', [\App\Http\Controllers\Admin\ScoreController::class, 'store']);
+        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\ScoreController::class, 'edit']);
+        Route::post('/edit/{id}', [\App\Http\Controllers\Admin\ScoreController::class, 'update']);
+        Route::post('/delete/{id}', [\App\Http\Controllers\Admin\ScoreController::class, 'delete']);
+    });
+
 });
 
 

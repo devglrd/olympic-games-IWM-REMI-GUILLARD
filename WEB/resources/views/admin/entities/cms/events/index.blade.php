@@ -9,7 +9,7 @@
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Events List</h1>
-            <a href="{{ action([\App\Http\Controllers\Admin\EventController::class, 'create']) }}" class="btn btn-success">Ajouter un event</a>
+            <a href="{{ action([\App\Http\Controllers\Admin\EventController::class, 'create']) }}" class="btn btn-success">Add new event</a>
         </div>
         <div class="table-responsive">
             <table class="table table-striped table-sm">

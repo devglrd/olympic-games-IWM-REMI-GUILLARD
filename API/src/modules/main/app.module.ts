@@ -14,8 +14,8 @@ import { EventModule } from '../event';
 // import { ArticleModule } from '../article/article.module';
 // import { SeedsModule } from '../seeds/seeds.module';
 import { MailerModule } from '@nestjs-modules/mailer';
-import {HandlebarsAdapter} from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter";
-import {patchSelectQueryBuilder} from "typeorm-global-scopes";
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import { patchSelectQueryBuilder } from 'typeorm-global-scopes';
 
 @Module({
   imports: [
@@ -42,9 +42,9 @@ import {patchSelectQueryBuilder} from "typeorm-global-scopes";
       useFactory: (configService: ConfigService) => {
         return {
           transport: `${configService.get('MAIL_DRIVER')}://${configService.get(
-              'MAIL_USERNAME',
+            'MAIL_USERNAME',
           )}:${configService.get('MAIL_PASSWORD')}@${configService.get(
-              'MAIL_HOST',
+            'MAIL_HOST',
           )}:${configService.get('MAIL_PORT')}`,
           defaults: {
             from: '"nest-modules" <modules@nestjs.com>',

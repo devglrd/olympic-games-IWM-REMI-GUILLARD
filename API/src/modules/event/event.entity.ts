@@ -14,11 +14,9 @@ import { Score } from '../score';
 import { EventCategory } from './eventCategory.entity';
 import { Type } from 'class-transformer';
 
-import {GlobalScopes} from "typeorm-global-scopes";
+import { GlobalScopes } from 'typeorm-global-scopes';
 
-@GlobalScopes<Event>([
-  (qb, alias) => qb.andWhere(`${alias}.delete = 0`)
-])
+@GlobalScopes<Event>([(qb, alias) => qb.andWhere(`${alias}.delete = 0`)])
 @Entity({
   name: 'events',
 })
@@ -45,13 +43,19 @@ export class Event extends BaseEntity {
   @Column({ default: false })
   delete: boolean;
 
-  @ManyToOne((type) => Sport, (sport) => sport.event, )
+  @ManyToOne((type) => Sport, (sport) => sport.event)
   sport: Sport;
 
-  @ManyToOne((type) => EventCategory, (cat) => cat.events, {eager: true, onDelete: 'CASCADE'})
+  @ManyToOne((type) => EventCategory, (cat) => cat.events, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   category: EventCategory;
 
-  @OneToMany((type) => Score, (event) => event.event, {eager: true, onDelete: 'CASCADE',})
+  @OneToMany((type) => Score, (event) => event.event, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   scores: Score[];
 }
 

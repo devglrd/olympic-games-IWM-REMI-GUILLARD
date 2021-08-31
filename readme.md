@@ -37,18 +37,18 @@
 <!-- API -->
 ## API
 
-**La premiere chose à faire est d'installer les dépendences.**
+**La première chose à faire est d'installer les dépendances.**
 <br>
-**Pour se faire executer la commande `npm i` dans le dosier `API`**
+**Pour se faire exécuter la commande `npm i` dans le dossier `API`**
 
 
 
 ### Faire tourner l'api
 
 * Copier coller le `.env.example` en `.env`
-* Assurez vous d'avoir les bonnes informations concernant la base de données `(DB_USERNAME, DB_HOST, DB_PASSWORD etc...)`
-* Pour faire tourner l'api après avoir installer les dépendances, après avoir copié le .env, et après avoir rentré les informations relatives à la connection de la base de donnée, executer la commande `npm run start:dev`
-* Il est neccessaire de faire un seed de la base de données une fois l'API en fonctionnement pour se faire il faut se rendre sur l'adresse `http://127.0.0.1:3000/seeds` c'est une route protéger, il faut donc lui passer un token pour assurer l'authentification, le token est au niveau du .env dans le champs `SEEDER_TOKEN`. Url complete : `http://127.0.0.1:3000/seeds?token=$SEEDER_TOKEN` (remplacer `SEEDER_TOKEN` par la valeur dans le `.env`) 
+* Assurez-vous d'avoir les bonnes informations concernant la base de données `(DB_USERNAME, DB_HOST, DB_PASSWORD etc...)`
+* Pour faire tourner l'api après avoir installé les dépendances, après avoir copié le .env, et après avoir rentré les informations relatives à la connexion de la base de données, exécuter la commande `npm run start:dev`
+* Il est nécessaire de faire un seed de la base de données une fois l'API en fonctionnement pour ce faire, il faut se rendre sur l'adresse `http://127.0.0.1:3000/seeds` c'est une route protéger, il faut donc lui passer un token pour assurer l'authentification, le token est au niveau du .env dans le champs `SEEDER_TOKEN`. Url complete : `http://127.0.0.1:3000/seeds?token=$SEEDER_TOKEN` (remplacer `SEEDER_TOKEN` par la valeur dans le `.env`) 
 
 
 **L'api devrait tourner sans problème**
@@ -111,7 +111,7 @@ Le login : `admin@olympicgames.com`
 
 Le mot de passe : `olympicgames2024+!`
 
-Une fois connectez vous êtes automatiquement rediriger sur l'interface admin. 
+Une fois connecté, vous êtes automatiquement redirigé sur l'interface admin. 
 ![img](https://i.ibb.co/qWQRS7M/screencapture-127-0-0-1-8000-admin-2021-08-31-11-19-13.png)
 <!-- MOBILE -->
 ## Application Mobile
@@ -121,6 +121,8 @@ Pour faire tourner l'application mobile il faut que vous disposiez de :
 * Dart
 * Flutter
 
+*`Si vous êtes sur mac, lancez d'abord un simulator (cmd+espace) puis notez simulator, et ouvrez simulator.app`*
+<br>  
 Il suffit ensuite de se rendre dans le dossier `mobile` et d'éxecuter la commande `flutter run` qui devrait `automatiquement choisir un device surlequel faire tourner l'application mobile`
 
 ![image](https://i.ibb.co/Qpy0MyZ/Simulator-Screen-Shot-i-Phone-11-2021-08-31-at-11-13-00.png)
@@ -137,7 +139,7 @@ Vous pouvez retrouver la video de présentation du projet [ici](https://www.yout
 
 ## Recherche internet
 
-J'ai essentielleent utilisé la documentation des technologies choisies.
+J'ai essentiellement utilisé la documentation des technologies choisies.
 
 1. [Nest.js](https://docs.nestjs.com/)
 2. [Laravel](https://laravel.com/docs/8.x)

@@ -30,8 +30,6 @@ export class SeedsService {
 
   async truncate() {
     this.logger.debug('Clear all tables ...');
-    const queryRunnr = getConnection().createQueryRunner();
-    // queryRunnr.query('SET FOREIGN_KEY_CHECKS=0;');
     await getConnection().synchronize(true);
   }
 
@@ -58,10 +56,6 @@ export class SeedsService {
     await user.save();
     users.push(user);
     return users;
-  }
-
-  findSport() {
-    return this.httpService.get('http://localhost:3000/cats');
   }
 
   private async seedSport() {

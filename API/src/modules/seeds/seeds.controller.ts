@@ -25,7 +25,7 @@ export class SeedsController {
     if (token !== this.configService.get('SEEDER_TOKEN')) {
       throw new UnauthorizedException('Wrong Token combination!');
     }
-    this.seedsService.seed();
+    await this.seedsService.seed();
     return res.send({
       message: 'Database Seeding',
     });

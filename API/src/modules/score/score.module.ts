@@ -3,10 +3,10 @@ import { ScoreController } from './score.controller';
 import { ScoreService } from './score.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Score } from './score.entity';
-import {AuthModule} from "../auth";
+import { AuthModule } from '../auth';
 
 @Module({
-  imports: [ TypeOrmModule.forFeature([Score]), AuthModule],
+  imports: [TypeOrmModule.forFeature([Score]), AuthModule],
   exports: [ScoreService],
   controllers: [ScoreController],
   providers: [ScoreService],

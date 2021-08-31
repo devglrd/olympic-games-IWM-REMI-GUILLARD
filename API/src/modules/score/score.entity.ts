@@ -9,12 +9,9 @@ import {
 import { Sport } from '../sport';
 import { Event } from '../event';
 
+import { GlobalScopes } from 'typeorm-global-scopes';
 
-import {GlobalScopes} from "typeorm-global-scopes";
-
-@GlobalScopes<Score>([
-  (qb, alias) => qb.andWhere(`${alias}.delete = 0`)
-])
+@GlobalScopes<Score>([(qb, alias) => qb.andWhere(`${alias}.delete = 0`)])
 @Entity({
   name: 'scores',
 })
@@ -39,7 +36,7 @@ export class Score extends BaseEntity {
   @Column({ length: 255 })
   email: string;
 
-  @ManyToOne((type) => Event, (event) => event.scores, )
+  @ManyToOne((type) => Event, (event) => event.scores)
   event: Event;
 }
 

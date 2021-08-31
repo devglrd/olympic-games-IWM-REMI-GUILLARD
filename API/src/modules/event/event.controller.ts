@@ -13,9 +13,9 @@ import { EventService } from './event.service';
 import { AuthGuard } from '@nestjs/passport';
 import { SportResssource } from '../sport/sport-resssource';
 import { SportService } from '../sport';
-import {EventResssource} from "./event-resssource";
-import {EventCategoryResssource} from "./cat-resssource";
-import moment from "moment";
+import { EventResssource } from './event-resssource';
+import { EventCategoryResssource } from './cat-resssource';
+import moment from 'moment';
 
 @ApiTags('events')
 @Controller('events')
@@ -24,16 +24,17 @@ export class EventController {
 
   @Get()
   async index(@Req() req, @Res() res) {
-    if(req.query.filter && req.query.filterType  === "sport"){
-      const events = await this.eventService.filterSport(req.query.filter)
-
+    if (req.query.filter && req.query.filterType === 'sport') {
+      const events = await this.eventService.filterSport(req.query.filter);
 
       return res.send({
-        data: EventResssource.collection(events.filter((e) => {
-          const date = e.startAt.split("/");
-          const validDate = date[1] + "-" + date[0] + "-" + date[2];
-          return moment().isSame(moment(new Date(validDate)), 'day');
-        })),
+        data: EventResssource.collection(
+          events.filter((e) => {
+            const date = e.startAt.split('/');
+            const validDate = date[1] + '-' + date[0] + '-' + date[2];
+            return moment().isSame(moment(new Date(validDate)), 'day');
+          }),
+        ),
       });
     }
     const events = await this.eventService.index();
@@ -50,15 +51,12 @@ export class EventController {
     });
   }
 
-
-
   @ApiBearerAuth()
   @UseGuards(AuthGuard())
   @ApiResponse({ status: 200, description: 'Successful Response' })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   @Post()
   async store(@Req() req, @Res() res) {
-    // const sport = await this.sportService.find(req.sport)
     const event = await this.eventService.store(req.body);
     return res.send({
       data: EventResssource.toArray(event),
@@ -71,7 +69,6 @@ export class EventController {
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   @Put(':id')
   async update(@Req() req, @Res() res) {
-    // const sport = await this.sportService.find(req.sport)
     const event = await this.eventService.update(req.body, req.params.id);
     return res.send({
       data: EventResssource.toArray(event),
@@ -84,9 +81,7 @@ export class EventController {
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   @Delete(':id')
   async delete(@Req() req, @Res() res) {
-    // const sport = await this.sportService.find(req.sport)
-    console.log('ok');
-    const event = await this.eventService.delete(req.params.id);
+    await this.eventService.delete(req.params.id);
     return res.send({
       data: 'Success',
     });

@@ -5,9 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Event } from './event.entity';
 import { EventCategory } from './eventCategory.entity';
 import { SportModule, SportService } from '../sport';
-import {EventCategoryController} from "./eventCategory.controller";
-import {CategoryService} from "./category.service";
-import {AuthModule} from "../auth";
+import { EventCategoryController } from './eventCategory.controller';
+import { CategoryService } from './category.service';
+import { AuthModule } from '../auth';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Event, EventCategory]), AuthModule],
