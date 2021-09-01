@@ -99,7 +99,7 @@ Pour faire tourner l'application Web, il est nécessaire de faire d'abord `fonct
    ```
 6. Faire fonctionner le server PHP
    ```sh
-   php artisan run
+   php artisan serve
    ```
 
 #### Vous pouvez ensuite vous rendre sur `http://127.0.0.0.1/8000` pour avoir accès à l'interface *web public* 

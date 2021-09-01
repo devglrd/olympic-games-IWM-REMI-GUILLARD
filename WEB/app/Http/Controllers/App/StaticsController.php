@@ -68,7 +68,7 @@ class StaticsController extends Controller
                 "forms"  => $form
             ]);
         } catch (\Exception $exception) {
-            return redirect()->back()->with('error', 'Something went wrong');
+            abort(500);
         }
     }
 
