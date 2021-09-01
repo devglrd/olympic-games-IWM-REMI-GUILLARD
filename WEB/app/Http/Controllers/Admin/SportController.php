@@ -12,12 +12,18 @@ class SportController extends Controller
 
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:3000/api/sports');
-        $data = json_decode($response->body())->data;
+        try {
 
-        return view(self::PATH_VIEW . 'index')->with([
-            "sports" => $data
-        ]);
+
+            $response = Http::get('http://127.0.0.1:3000/api/sports');
+            $data = json_decode($response->body())->data;
+
+            return view(self::PATH_VIEW . 'index')->with([
+                "sports" => $data
+            ]);
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
 
@@ -35,7 +41,7 @@ class SportController extends Controller
         ]);
         $token = $request->token;
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer '. $token,
+            'Authorization' => 'Bearer ' . $token,
         ])->post('http://127.0.0.1:3000/api/sports', [
             "name"    => $request->get('name'),
             "content" => $request->get('content'),
@@ -44,22 +50,30 @@ class SportController extends Controller
         if (isset(json_decode($response->body())->data)) {
             $data = json_decode($response->body())->data;
 
-            return redirect()->action([self::class, 'index'])->with('success', 'Sport enregistré.');
+            return redirect()->action([self::class, 'index'])->with('success', 'Sport  sucessfully saved');
         }
 
-        return redirect()->back()->with('error', 'Un problème est survenue');
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function edit($id)
     {
-        $response = Http::get('http://127.0.0.1:3000/api/sports/' . $id);
-        $sport = json_decode($response->body())->data;
-        return view(self::PATH_VIEW . 'edit')->with([
-            'sport' => $sport
-        ]);
+        try {
+
+
+            $response = Http::get('http://127.0.0.1:3000/api/sports/' . $id);
+            $sport = json_decode($response->body())->data;
+
+            return view(self::PATH_VIEW . 'edit')->with([
+                'sport' => $sport
+            ]);
+
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
-    public function update(Request  $request, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name'    => 'required',
@@ -67,8 +81,8 @@ class SportController extends Controller
         ]);
         $token = $request->token;
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer '. $token,
-        ])->put('http://127.0.0.1:3000/api/sports/'. $id, [
+            'Authorization' => 'Bearer ' . $token,
+        ])->put('http://127.0.0.1:3000/api/sports/' . $id, [
             "name"    => $request->get('name'),
             "content" => $request->get('content'),
         ]);
@@ -80,7 +94,7 @@ class SportController extends Controller
             return redirect()->action([self::class, 'index'])->with('success', 'Sport modifié.');
         }
 
-        return redirect()->back()->with('error', 'Un problème est survenue');
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function delete(Request $request, $id)

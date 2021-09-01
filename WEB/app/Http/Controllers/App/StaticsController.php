@@ -30,6 +30,8 @@ class StaticsController extends Controller
             "unit"  => "required",
             "email" => "required",
         ]);
+
+
         $response = Http::post('http://127.0.0.1:3000/api/scores', [
             "type"  => $request->get('type'),
             "event" => $request->get('event'),
@@ -43,10 +45,10 @@ class StaticsController extends Controller
         if (isset(json_decode($response->body())->data)) {
             $data = json_decode($response->body())->data;
 
-            return redirect()->back()->with('success', 'Votre score à bien été enregistré.');
+            return redirect()->back()->with('success', 'Score sucessfully saved');
         }
 
-        return redirect()->back()->with('error', 'Un problème est survenue');
+        return redirect()->back()->with('error', 'Something went wrong');
 
     }
 
@@ -54,17 +56,20 @@ class StaticsController extends Controller
     public
     function home(Request $request)
     {
+        try {
+            $response = Http::get('http://127.0.0.1:3000/api/sports');
+            $data = json_decode($response->body())->data;
 
-        $response = Http::get('http://127.0.0.1:3000/api/sports');
-        $data = json_decode($response->body())->data;
+            $response = Http::get('http://127.0.0.1:3000/api/sports');
+            $form = json_decode($response->body())->data;
 
-        $response = Http::get('http://127.0.0.1:3000/api/sports');
-        $form = json_decode($response->body())->data;
-
-        return view(self::PATH_VIEW . 'home')->with([
-            "sports" => $data,
-            "forms"  => $form
-        ]);
+            return view(self::PATH_VIEW . 'home')->with([
+                "sports" => $data,
+                "forms"  => $form
+            ]);
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
 
@@ -80,11 +85,16 @@ class StaticsController extends Controller
     public
     function login(Request $request)
     {
-        $response = Http::post('http://127.0.0.1:3000/api/auth/login', [
-            "email"    => $request->get('email'),
-            "password" => $request->get('password'),
-        ]);
+        try {
 
+
+            $response = Http::post('http://127.0.0.1:3000/api/auth/login', [
+                "email"    => $request->get('email'),
+                "password" => $request->get('password'),
+            ]);
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
         if (isset(json_decode($response->body())->accessToken)) {
             $data = json_decode($response->body());
             session()->put('auth', true);
@@ -92,7 +102,7 @@ class StaticsController extends Controller
             session()->put('user', json_encode($data->user));
 
             return redirect()->action([AdminController::class, 'dashboard']);
-            //return redirect()->back()->with('success', 'Votre score à bien été enregistré.');
+            //return redirect()->back()->with('success', 'Votre score à bien été  sucessfully saved');
         }
 
         return redirect()->back()->with('error', 'Wrong credentials');

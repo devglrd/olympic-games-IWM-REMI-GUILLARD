@@ -14,6 +14,9 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
+        try {
+
+
         $token = $request->token;
 
         $response = Http::withHeaders([
@@ -24,11 +27,18 @@ class AdminController extends Controller
         return view(self::PATH_VIEW . 'dashboard')->with([
             "scores" => $data
         ]);
+
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
 
     public function validateScore(Request $request, $id)
     {
+        try {
+
+
         $token = $request->token;
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
@@ -36,10 +46,16 @@ class AdminController extends Controller
         $data = json_decode($response->body())->data;
 
         return redirect()->action([self::class, 'dashboard']);
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     public function refuse(Request $request, $id)
     {
+        try {
+
+
         $token = $request->token;
         $response = Http::withHeaders([
             'Authorization' => 'Bearer ' . $token,
@@ -47,6 +63,9 @@ class AdminController extends Controller
         $data = json_decode($response->body())->data;
 
         return redirect()->action([self::class, 'dashboard']);
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     public function logout(Request $request)

@@ -12,17 +12,27 @@ class EventController extends Controller
 
     public function index()
     {
+        try{
+
+
         $response = Http::get('http://127.0.0.1:3000/api/events');
         $data = json_decode($response->body())->data;
 
         return view(self::PATH_VIEW . 'index')->with([
             "sports" => $data
         ]);
+
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
 
     public function create()
     {
+
+        try {
+
 
         $response = Http::get('http://127.0.0.1:3000/api/sports');
         $sports = json_decode($response->body())->data;
@@ -33,6 +43,10 @@ class EventController extends Controller
             'sports' => $sports,
             'events' => $events
         ]);
+
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     public function store(Request $request)
@@ -61,20 +75,27 @@ class EventController extends Controller
         if (isset(json_decode($response->body())->data)) {
             $data = json_decode($response->body())->data;
 
-            return redirect()->action([self::class, 'index'])->with('success', 'Event enregistré.');
+            return redirect()->action([self::class, 'index'])->with('success', 'Event  sucessfully saved');
         }
 
-        return redirect()->back()->with('error', 'Un problème est survenue');
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function edit($id)
     {
+        try {
+
+
         $response = Http::get('http://127.0.0.1:3000/api/events/' . $id);
         $event = json_decode($response->body())->data;
 
         return view(self::PATH_VIEW . 'edit')->with([
             'event' => $event
         ]);
+
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
     public function update(Request $request, $id)
@@ -98,10 +119,10 @@ class EventController extends Controller
         if (isset(json_decode($response->body())->data)) {
             $data = json_decode($response->body())->data;
 
-            return redirect()->action([self::class, 'index'])->with('success', 'Event enregistré.');
+            return redirect()->action([self::class, 'index'])->with('success', 'Event  sucessfully saved');
         }
 
-        return redirect()->back()->with('error', 'Un problème est survenue');
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function delete(Request $request, $id)

@@ -12,12 +12,18 @@ class ScoreController extends Controller
 
     public function index()
     {
+        try {
+
+
         $response = Http::get('http://127.0.0.1:3000/api/scores/admin');
         $data = json_decode($response->body())->data;
 
         return view(self::PATH_VIEW . 'index')->with([
             "scores" => $data
         ]);
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
     }
 
 
@@ -54,10 +60,10 @@ class ScoreController extends Controller
         if (isset(json_decode($response->body())->data)) {
             $data = json_decode($response->body())->data;
 
-            return redirect()->action([self::class, 'index'])->with('success', 'Event enregistré.');
+            return redirect()->action([self::class, 'index'])->with('success', 'Event  sucessfully saved');
         }
 
-        return redirect()->back()->with('error', 'Un problème est survenue');
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function edit($id)
@@ -99,7 +105,7 @@ class ScoreController extends Controller
             return redirect()->action([self::class, 'index'])->with('success', 'Score successfully updated.');
         }
 
-        return redirect()->back()->with('error', 'Un problème est survenue');
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function delete(Request $request, $id)
