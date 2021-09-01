@@ -133,7 +133,7 @@ Il suffit ensuite de se rendre dans le dossier `mobile` et d'éxecuter la comman
 
 ## VIDEO
 
-Vous pouvez retrouver la video de présentation du projet [ici](https://www.youtube.com/watch?v=splfbVgpzWw)
+Vous pouvez retrouver la video de présentation du projet [ici](https://www.youtube.com/watch?v=oA_9u3muQuU)
 
 
 
