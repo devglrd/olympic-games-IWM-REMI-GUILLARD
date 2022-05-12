@@ -150,6 +150,6 @@ J'ai essentiellement utilisé la documentation des technologies choisies.
 
 ## Contact
 
-REMI GUILLARD A5 IWM - glrd.remi@gmail.com - remi.guillard@edu.devinci.fr
+REMI GUILLARD - remi@moostackc.fr
 
-Lien du projet : [https://github.com/devglrd/olympic-games-IWM-REMI-GUILLARD](https://github.com/devglrd/olympic-games-IWM-REMI-GUILLARD)
+Lien du projet : [https://github.com/devglrd/olympic-games](https://github.com/devglrd/olympic-games)
